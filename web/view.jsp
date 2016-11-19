@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : view
     Created on : 5/11/2016, 11:02:18 PM
     Author     : Juan y Karol
@@ -10,7 +10,7 @@
       <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>FinSoft S.A.S</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -52,7 +52,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>F</b>N</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>FINSFOT</b>SAS</span>
+          <span class="logo-lg"><b>FINSOFT </b>S.A.S</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -119,42 +119,44 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
+               <li class="active treeview">
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>General</span>
+                <i class="fa fa-pie-chart"></i> <span>Indicadores</span>
               </a>
             </li>
             <li class="active treeview">
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Indicadores</span>
-              </a>
-            </li>
-            <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Simulaciones</span><i class="fa fa-angle-down pull-right"></i>
+                <i class="fa fa-cogs"></i> <span>Sistema</span><i class="fa fa-angle-down pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Vista Simulaciones</a></li>
-                <li><a href="index2.html"><i class="fa fa-circle-o"></i> Simulador Comercial</a></li>
-                <li><a href="index2.html"><i class="fa fa-circle-o"></i> Simulador Oficina</a></li>
+                <li class="active"><a href="index.html"><i class="fa fa-user"></i> Gestion Usuarios</a></li>
+                <li><a href="index2.html"><i class="fa fa-wrench"></i> Parametros Generales</a></li>
               </ul>
             </li>
             <li class="active treeview">
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <i class="fa fa-bank"></i> <span>Modulo de Creditos</span>
               </a>
             </li>
             <li class="active treeview">
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <i class="fa fa-file-pdf-o"></i> <span>Modulo Reportes</span>
               </a>
             </li>
-            
         </section>
         <!-- /.sidebar -->
       </aside>
-        
-        </div>
+            
+            <div class="content-wrapper">
+                
+            </div>
+                <footer class="main-footer">
+                    <div class="pull-right hidden-xs">
+                        <b>Version</b> 1.0.0
+                    </div>
+                    <strong>Copyright &copy; 2016 <a href="#">FINSOFT S.A.S</a>.</strong> Todos los derechos Reservados.
+                </footer>
+            </div>
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
