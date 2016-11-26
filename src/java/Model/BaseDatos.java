@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 import oracle.jdbc.OracleTypes;
 
 public class BaseDatos
@@ -42,32 +44,66 @@ public class BaseDatos
     {
         int inPosicion = 0, inEspacio  = 0;
         int y = 0, z = 0;
-        String stBloque = "BEGIN ",
-               stEntero   = "<I>",
-               stCaracter = "<S>",
-               stCursor   = "<C>",
-               stDecimal  = "<D>",
-               stBlob     = "<B>",
-               stDesfragm;
-        ArrayList ParamOut;
+        String stAbre   = "<", stCierra = ">";
+        String stBloque = "BEGIN ", stEnd    = " END;";
+        
+        /* Tipos de valores para comparar */
+        String stEntero   = stAbre + "I" + stCierra,
+               stCaracter = stAbre + "S" + stCierra,
+               stCursor   = stAbre + "C" + stCierra,
+               stDecimal  = stAbre + "D" + stCierra,
+               stBoleano  = stAbre + "B" + stCierra,
+               stFile     = stAbre + "F" + stCierra,
+               stMaxiCara = stAbre + "M" + stCierra, //Gran Cantidad de caracteres(Blob,Clob)
+               stFecha    = stAbre + "T" + stCierra; // Tiempo
+        
+        String VectPara[] = {stEntero, stCaracter, stCursor, stDecimal, stBoleano, stFile, stMaxiCara, stFecha};
+        ArrayList<ArrayList> ryParamOut = new ArrayList<>();
+        ArrayList ryFila = new ArrayList();
+        
         int inCantEspa = ryValores.size();
-        boolean blFuncion;
+        boolean blParaSali, blParaLoop; //Parametros de salida
+        int inOrder = 0;
         try
         {
-            blFuncion = stSql.contains("<") && stSql.contains(">");
-                if(blFuncion)
+            blParaSali = stSql.contains(stAbre) && stSql.contains(stCierra);
+            if(blParaSali)
+            {
+                blParaLoop = true;
+                while(blParaLoop)
                 {
-                  stDesfragm = stSql;
-                
-                //stDesfragm.indexOf("<E>"); retorna cuantas veces se encuentra '<E>' dentro de la cadena
-                    inPosicion++;
-                    stBloque = stSql.replace("<I>", "?");
-                
+                    for(int i = 0; i < VectPara.length; i++)
+                    {
+                        if(stSql.contains(VectPara[i]))
+                        {
+                            inOrder = stSql.indexOf(VectPara[i]);
+                            
+                            ryFila.clear();
+                            ryFila.add(inOrder);
+                            ryFila.add(VectPara[i]);
+                            ryParamOut.add(ryFila);
+                            stSql = stSql.replaceFirst(VectPara[i], "?");
+                            blParaLoop = stSql.contains(stAbre) && stSql.contains(stCierra);
+                            if(!blParaLoop)
+                            {
+                                break;
+                            }
+                        }
+                    }
                 }
-            stBloque = stBloque + stSql + " END;";
+                inPosicion++;
+                /*for(int i = 0; i < ryParamOut.size(); i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        ryParamOut.get(i).get(j);
+                    }
+                }*/
+            }
+            stBloque = stBloque + stSql + stEnd;
             conectar();
             cs = cn.prepareCall(stBloque);
-            if(blFuncion)
+            if(blParaSali)
             {
                 cs.registerOutParameter(inPosicion, OracleTypes.OTHER);
             }
@@ -85,7 +121,8 @@ public class BaseDatos
                 cs.registerOutParameter(inPosicion, OracleTypes.OTHER);
             }
             cs.execute();
-            if(blFuncion)
+            ryValores.clear();
+            if(blParaSali)
             {
                 ryValores.add(cs.getObject(1));
                 y++;

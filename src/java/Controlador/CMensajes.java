@@ -33,7 +33,11 @@ public class CMensajes
             mensaje = mMens.getMensaje(inMensCodi);
             if(mensaje == null)
             {
-                mensaje = "Mensaje No Definido";
+                mensaje = "[0] - Mensaje No Definido.";
+            }
+            else
+            {
+                mensaje = "[" + inMensCodi + "] - " + mensaje;
             }
             mensaje = "<script> alert('" + mensaje + "'); </script>";
             response.setContentType("text/html");

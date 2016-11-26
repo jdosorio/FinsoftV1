@@ -1,5 +1,8 @@
 package Servlets;
 
+import Controlador.CMensajes;
+import Controlador.CParaoper;
+import Objetos.Paraoper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -8,12 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Controlador.CUsuarios;
-import Model.MUsuarios;
-import Objetos.Usuarios;
-
-@WebServlet(name = "Index", urlPatterns = {"/Index"})
-public class Index extends HttpServlet {
+/**
+ *
+ * @author FELIPE
+ */
+@WebServlet(name = "SParaoper", urlPatterns = {"/SParaoper"})
+public class SParaoper extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,20 +31,31 @@ public class Index extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-          try
-          {
-              Usuarios Usua = new Usuarios();
-            Usua.setUsuaNick(request.getParameter("txLogin"));
-            Usua.setUsuaPass(request.getParameter("txPass"));
-            
-            //CtrlUsua cUsua = new CtrlUsua(Usua);
-            
-          }
-          catch(Exception x){
-              
-          }
+            try
+            {
+                Paraoper Paop = new Paraoper();
+                Paop.setPaopCodi(request.getParameter("txPerfCodi"));
+                Paop.setPaopDesc(request.getParameter("txPerfDesc"));
+                Paop.setPaopValo(request.getParameter("txPerfFunc"));
+                Paop.setPaopModu(request.getParameter("txPerfFunc"));
+                CParaoper cPaop = new CParaoper(Paop);
+                
+                if(cPaop.PaopCrud(request.getParameter("btSubmit")))
+                {
+                    CMensajes.Mensaje(1, response);
+                }
+                else
+                {
+                    CMensajes.Mensaje(5, response);
+                }
+            }
+            catch(Exception x)
+            {
+                CMensajes.Mensaje(x.toString(), response);
+            }
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -80,4 +94,5 @@ public class Index extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

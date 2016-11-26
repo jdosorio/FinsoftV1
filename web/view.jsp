@@ -129,14 +129,22 @@
                 <i class="fa fa-cogs"></i> <span>Sistema</span><i class="fa fa-angle-down pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-user"></i> Gestion Usuarios</a></li>
-                <li><a href="index2.html"><i class="fa fa-wrench"></i> Parametros Generales</a></li>
+                <li class="active"><a href="Usuarios.jsp"><i class="fa fa-user"></i> Gestion Usuarios</a></li>
+                <li><a href="Paraoper.jsp"><i class="fa fa-wrench"></i> Parametros Generales</a></li>
+                <li><a href="Estados.jsp"><i class="fa fa-wrench"></i> Estados del Sistema</a></li>
+                <li><a href="Perfiles.jsp"><i class="fa fa-wrench"></i> Perfiles del Sistema</a></li>
+                <li><a href="Modulos.jsp"><i class="fa fa-wrench"></i> Modulos del Sistema</a></li>
+                <li><a href="Entibanc.jsp"><i class="fa fa-bank"></i> Entidades Bancarias</a></li>
               </ul>
             </li>
             <li class="active treeview">
               <a href="#">
-                <i class="fa fa-bank"></i> <span>Modulo de Creditos</span>
+                <i class="fa fa-bank"></i> <span>Modulo de Creditos</span><i class="fa fa-angle-down pull-right"></i>
               </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="Clientes.jsp"><i class="fa fa-user"></i> Clientes</a></li>
+                <li><a href="Compcacl.jsp"><i class="fa fa-pie-chart"></i> Compra de Cartera</a></li>
+              </ul>
             </li>
             <li class="active treeview">
               <a href="#">

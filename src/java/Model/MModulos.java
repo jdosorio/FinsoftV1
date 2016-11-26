@@ -48,7 +48,6 @@ public class MModulos extends BaseDatos
             ryValores.add(Modu.getModuCodi());
             ryValores.add(Modu.getModuDesc());
             stSql = "pgModulos.prActuModu(?,?);";
-            stSql = "<S> := funcion(?,I,<C>,<I>,?);";
             parametros(0);
             return true;
         }
@@ -62,7 +61,6 @@ public class MModulos extends BaseDatos
     {
         try
         {
-            //ANYDATA dato = null;
             conectar();
             cs = cn.prepareCall("BEGIN pgModulos.prConsModu(?,?); END;");
             cs.setString(1, Modu.getModuCodi());
@@ -81,4 +79,18 @@ public class MModulos extends BaseDatos
             throw x;
         }
     }
+    
+    /*public Modulos consulta(Modulos Modu) throws Exception
+    {
+        try
+        {
+            stSql = "<B> := pgModulos.prConsModu(?,<S>,<S>);";
+            parametros(1);
+            return Modu;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }*/
 }

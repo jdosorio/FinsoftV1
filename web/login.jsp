@@ -30,7 +30,7 @@
 	</div>
 	
 	<div class="content">
-		<form class="form-vertical login-form" action="" method="post">
+		<form class="form-vertical login-form" action="Slogin" method="post">
 			<h3 class="form-title">Ingresar Credenciales</h3>
 			<div class="alert alert-error hide">
 				<button class="close" data-dismiss="alert"></button>
@@ -41,7 +41,7 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-user"></i>
-						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="Usuario" name="username"/>
+						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="Usuario" name="txUsuaNick" id="txUsuaNick"/>
 					</div>
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-lock"></i>
-						<input class="m-wrap placeholder-no-fix" type="password" autocomplete="off" placeholder="Contrasena" name="password"/>
+						<input class="m-wrap placeholder-no-fix" type="password" autocomplete="off" placeholder="Contraseña" name="txUsuaPass"/>
 					</div>
 				</div>
 			</div>

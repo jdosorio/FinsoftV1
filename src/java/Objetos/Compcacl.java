@@ -10,9 +10,9 @@ public class Compcacl
     
     private int    CoccCodi = 0;
     private String CoccEnba = "";
-    private int    CoccVacr = 0;
-    private int    CoccVafu = 0;
-    private int    CoccVapr = 0;
+    private double CoccVacr = 0;
+    private double CoccVafu = 0;
+    private double CoccVapr = 0;
     private String CoccOpco = "";
     
     public String getTabla()
@@ -38,29 +38,29 @@ public class Compcacl
         return CoccEnba;
     }
     
-    public void setCoccVacr(int CoccVacr)
+    public void setCoccVacr(double CoccVacr)
     {
         this.CoccVacr = CoccVacr;
     }
-    public int getCoccVacr()
+    public double getCoccVacr()
     {
         return CoccVacr;
     }
     
-    public void setCoccVafu(int CoccVafu)
+    public void setCoccVafu(double CoccVafu)
     {
         this.CoccVafu = CoccVafu;
     }
-    public int getCoccVafu()
+    public double getCoccVafu()
     {
         return CoccVafu;
     }
     
-    public void setCoccVapr(int CoccVapr)
+    public void setCoccVapr(double CoccVapr)
     {
         this.CoccVapr = CoccVapr;
     }
-    public int getCoccVapr()
+    public double getCoccVapr()
     {
         return CoccVapr;
     }
