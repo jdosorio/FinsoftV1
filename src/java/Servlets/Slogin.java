@@ -2,6 +2,7 @@ package Servlets;
 
 import Controlador.CMensajes;
 import Controlador.CUsuarios;
+import Objetos.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,9 +34,17 @@ public class Slogin extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             try
             {
+                Usuarios Usua = new Usuarios();
                 CUsuarios cUsua = new CUsuarios();
-                Object[] i = cUsua.ValiSesi(request.getParameter("txUsuaNick"), request.getParameter("txUsuaPass"));
-                CMensajes.Mensaje(1, response);
+                Usua = cUsua.ValiSesi(request.getParameter("txUsuaNick"),
+                                      request.getParameter("txUsuaPass"),
+                                      response);
+                if(Usua.getUsuaNom1() != null)
+                {
+                    HttpSession sesion = (HttpSession) request.getSession();
+                    sesion.setAttribute("usuario", Usua);
+                }
+                
             }
             catch(Exception x)
             {

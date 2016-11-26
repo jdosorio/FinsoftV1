@@ -34,8 +34,6 @@ public class SUsuarios extends HttpServlet {
             try
             {
                 Usuarios Usua = new Usuarios();
-                int inUsuaCodi = Integer.parseInt(request.getParameter("txUsuaCodi"));
-                Usua.setUsuaCodi(inUsuaCodi);
                 Usua.setUsuaNom1(request.getParameter("txUsuaNom1"));
                 Usua.setUsuaNom2(request.getParameter("txUsuaNom2"));
                 Usua.setUsuaApe1(request.getParameter("txUsuaApe1"));
@@ -48,12 +46,31 @@ public class SUsuarios extends HttpServlet {
                 Usua.setUsuaPass(request.getParameter("txUsuaPass"));
                 Usua.setUsuaPerf(request.getParameter("txUsuaPerf"));
                 Usua.setUsuaEsta(request.getParameter("txUsuaEsta"));
+                String Accion = request.getParameter("btSubmit");
                 
                 CUsuarios cUsua = new CUsuarios(Usua);
-                
-                if(cUsua.UsuaCrud(request.getParameter("btSubmit")))
+                if((!request.getParameter("txUsuaCodi").isEmpty() || !request.getParameter("txUsuaIden").isEmpty())
+                    )
                 {
-                    CMensajes.Mensaje(1, response);
+                    int inUsuaCodi = Integer.parseInt(request.getParameter("txUsuaCodi"));
+                    Usua.setUsuaCodi(inUsuaCodi);
+                   //cUsua.ValiExis(Usua);
+                }
+                if(cUsua.UsuaCrud(Accion))
+                {
+                    switch(Accion)
+                    {
+                        case "Guardar":
+                            CMensajes.Mensaje(2, response);
+                        break;
+                        case "Actualizar":
+                            CMensajes.Mensaje(3, response);
+                        break;
+                        case "Eliminar":
+                            CMensajes.Mensaje(4, response);
+                        break;
+                    }
+                    
                 }
                 else
                 {

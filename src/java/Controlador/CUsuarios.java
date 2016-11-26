@@ -2,6 +2,7 @@ package Controlador;
 
 import Model.MUsuarios;
 import Objetos.Usuarios;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -10,6 +11,7 @@ import Objetos.Usuarios;
 public class CUsuarios
 {
     Usuarios Usua;
+    boolean blRespuest;
     
     public CUsuarios()
     {
@@ -22,7 +24,7 @@ public class CUsuarios
     
     public boolean UsuaCrud(String Accion) throws Exception
     {
-        boolean blRespuest = false;
+        blRespuest = false;
         try
         {
             MUsuarios mUsua = new MUsuarios();
@@ -54,33 +56,46 @@ public class CUsuarios
         }
     }
     
-    public Object[] ValiSesi(String Login, String Contrase) throws Exception
+    public Usuarios ValiSesi(String Login, String Contrase, HttpServletResponse response) throws Exception
     {
         Object[] Result = new Object[2];
-        int inMensCodi = 0;
         try
         {
             MUsuarios mUsua = new MUsuarios();
             Result = mUsua.Sesion(Login, Contrase);
             if((int)Result[1] == 0)
             {
-                inMensCodi = 2;
+                CMensajes.Mensaje(6, response);//Usuario no existe
+                response.sendRedirect("login.jsp");
             }
             else
             {
                 if((String)Result[0] == "N")
                 {
-                    inMensCodi = 3;
+                    CMensajes.Mensaje(7, response);//Clave incorrecta
+                    response.sendRedirect("login.jsp");
                 }
                 else
                 {
-                    this.Usua.setUsuaCodi((int)Result[1]);
-                    UsuaCrud("Consultar");
-                    
+                    Usua.setUsuaCodi((int)Result[1]);
+                    if(UsuaCrud("Consultar"))
+                    {
+                        response.sendRedirect("view.jsp");
+                    }
                 }
             }
-            
-            return Result;
+            return Usua;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
+    public boolean ValiExis()
+    {
+        try
+        {
+            return blRespuest;
         }
         catch(Exception x)
         {

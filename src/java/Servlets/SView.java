@@ -1,7 +1,5 @@
 package Servlets;
-import Controlador.CMensajes;
-import Controlador.CModulos;
-import Objetos.Modulos;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,39 +8,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author FELIPE
  */
-@WebServlet(name = "SModulos", urlPatterns = {"/SModulos"})
-public class SModulos extends HttpServlet {
+@WebServlet(name = "SView", urlPatterns = {"/SView"})
+public class SView extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            try
-            {
-                Modulos Modu = new Modulos();
-                Modu.setModuCodi(request.getParameter("txModuCodi"));
-                Modu.setModuDesc(request.getParameter("txModuDesc"));
-                CModulos cModu = new CModulos(Modu);
-                //msg.println("<script language='JavaScript'>");
-                
-                if(cModu.ModuCrud(request.getParameter("btSubmit")))
-                {
-                    CMensajes.Mensaje(1, response);
-                }
-                else
-                {
-                    CMensajes.Mensaje(1, response);
-                }
-            }
-            catch(Exception x)
-            {
-                CMensajes.Mensaje(x.toString(), response);
-            }
+            
         }
     }
 
