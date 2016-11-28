@@ -40,7 +40,7 @@
                                 <label>Total Ingresos</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                                    <input type="text" class="form-control" name="txtSimuTing" id="txtSimuTing" onChange="separador_miles(this.value)">
+                                    <input type="text" class="form-control" name="txtSimuTing" id="txtSimuTing" onChange="separadorMiles('this.value')">
                                 </div> 
                             </div><!-- /.form-group -->
                   
