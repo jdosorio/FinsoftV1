@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:include page="header.jsp" />
+<script src="app/simulador.js"></script>
 <section class="content">
     <div class="row">
         <div class="col-md-6">
@@ -39,7 +40,7 @@
                                 <label>Total Ingresos</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                                    <input type="text" class="form-control" name="txtSimuTing" id="txtSimuTing">
+                                    <input type="text" class="form-control" name="txtSimuTing" id="txtSimuTing" onChange="separador_miles(this.value)">
                                 </div> 
                             </div><!-- /.form-group -->
                   

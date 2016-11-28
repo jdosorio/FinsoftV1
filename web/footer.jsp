@@ -14,6 +14,7 @@
                     <strong>Copyright &copy; 2016 <a href="#">FINSOFT S.A.S</a>.</strong> Todos los derechos Reservados.
                 </footer>
 </div>
+    <script src="app/functions.js"></script>
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
