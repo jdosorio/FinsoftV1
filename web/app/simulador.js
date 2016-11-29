@@ -6,7 +6,7 @@
 
 function recalcularSimulacion(){
     
-    aportes.value = Math.round(parseInt(salario_basico.value.replace(/\,/g, '')) * 0.08);
+    txtSimuTing.value = Math.round(parseInt(txtSimuBasi.value) + parseInt(txtSimuAdic.value));
     
     
 }

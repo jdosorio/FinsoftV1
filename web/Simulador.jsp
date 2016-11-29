@@ -37,10 +37,10 @@
                             </div><!-- /.form-group --> 
                   
                             <div class="form-group">
-                                <label>Total Ingresos</label>
+                                <label>Otro</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                                    <input type="text" class="form-control" name="txtSimuTing" id="txtSimuTing" onChange="separadorMiles('this.value')">
+                                    <input type="text" class="form-control" name="otro" id="otro" onChange="separadorMiles('this.value')">
                                 </div> 
                             </div><!-- /.form-group -->
                   
@@ -78,7 +78,7 @@
                                 <label>Salario Basico</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                                    <input type="text" class="form-control" name="txtSimuBasi" id="txtSimuBasi">
+                                    <input type="text" class="form-control" name="txtSimuBasi" id="txtSimuBasi" value="0" onBlur="recalcularSimulacion();">
                                 </div> 
                             </div><!-- /.form-group -->
                         </div><!-- /.col -->
@@ -193,21 +193,21 @@
                     <label>Ingresos Adicionales</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuAdic" id="txtSimuAdic">
+                    <input type="text" class="form-control" name="txtSimuAdic" id="txtSimuAdic" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <div class="form-group">
                     <label>Total Ingresos</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuTing" id="txtSimuTing">
+                    <input type="text" class="form-control" name="txtSimuTing" id="txtSimuTing" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <div class="form-group">
                     <label>Ingresos Menos Aportes</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuInapo" id="txtSimuInapo">
+                    <input type="text" class="form-control" name="txtSimuInapo" id="txtSimuInapo" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                 </div><!-- /.col -->
@@ -216,21 +216,21 @@
                     <label>Aportes de Ley</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuApor" id="txtSimuApor">
+                    <input type="text" class="form-control" name="txtSimuApor" id="txtSimuApor" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <div class="form-group">
                     <label>Total Egresos</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuTegr" id="txtSimuTegr">
+                    <input type="text" class="form-control" name="txtSimuTegr" id="txtSimuTegr" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <div class="form-group">
                     <label>Salario Libre Mensual</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuSlib" id="txtSimuSlib">
+                    <input type="text" class="form-control" name="txtSimuSlib" id="txtSimuSlib" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   </div><!-- /.col -->
@@ -258,7 +258,7 @@
                     <label>Valor Credito</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuCred" id="txtSimuCred">
+                    <input type="text" class="form-control" name="txtSimuCred" id="txtSimuCred" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <!-- /.form-group -->
@@ -291,14 +291,14 @@
                     <label>Asesoria Financiera</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuAfin" id="txtSimuAfin">
+                    <input type="text" class="form-control" name="txtSimuAfin" id="txtSimuAfin" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <div class="form-group">
                     <label>IVA</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuIva" id="txtSimuIva">
+                    <input type="text" class="form-control" name="txtSimuIva" id="txtSimuIva" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <!-- /.form-group -->
@@ -308,7 +308,7 @@
                     <label>Papeleria</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <div class="form-group">
