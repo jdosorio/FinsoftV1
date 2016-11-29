@@ -1,44 +1,119 @@
 <%-- 
-    Document   : Modulos
-    Created on : 24-nov-2016, 0:21:39
+    Document   : newjsp
+    Created on : 28-nov-2016, 9:38:08
     Author     : FELIPE
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <title>Gestion Modulos</title>
-    </head>
-    <body>
-        <form class="form-horizontal" style="margin:0 auto" method="post" action="SModulos">
-            <div class="form-group">
-                <label class="col-lg-4 control-label">Código de Modulo: </label>
-                <div class="col-lg-4">
-                    <input type="text" id="txModuCodi" name="txModuCodi">
+<jsp:include page="header.jsp" />
+<section class="content">
+    <script>
+            $(document).ready(function()
+            {
+            	$('#btConsultar').click(function(event)
+                {
+                    var Codigo = $('#txModuCodi').val();
+                    var Accion = "Consultar";
+                    $.post('SModulos',
+                    {
+                        txModuCodi : Codigo,
+                        btSubmit : Accion
+			},
+                    function(responseText)
+                    {
+                        $('#tabla').html(responseText);
+                    });
+		});
+                $('#btGuardar').click(function(event)
+                {
+                    var Codigo = $('#txModuCodi').val();
+                    var Descripcion = $('#txModuDesc').val();
+                    var Accion = "Guardar";
+                    $.post('SModulos',
+                    {
+                        txModuCodi : Codigo,
+                        txModuDesc : Descripcion,
+                        btSubmit : Accion
+			},
+                    function(responseText)
+                    {
+                        //$('#tabla').html(responseText);
+                    });
+		});
+                $('#btEliminar').click(function(event)
+                {
+                    var Codigo = $('#txModuCodi').val();
+                    var Accion = "Eliminar";
+                    $.post('SModulos',
+                    {
+                        txModuCodi : Codigo,
+                        btSubmit : Accion
+			},
+                    function(responseText)
+                    {
+                        //$('#tabla').html(responseText);
+                    });
+		});
+                $('#btActualizar').click(function(event)
+                {
+                    var Codigo = $('#txModuCodi').val();
+                    var Descripcion = $('#txModuDesc').val();
+                    var Accion = "Actualizar";
+                    $.post('SModulos',
+                    {
+                        txModuCodi : Codigo,
+                        txModuDesc : Descripcion,
+                        btSubmit : Accion
+			},
+                    function(responseText)
+                    {
+                        //$('#tabla').html(responseText);
+                    });
+		});
+            });
+    </script>
+    <form id="fmModulos" name="fmModulos" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Gestion de Modulos</h3>
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Código: </label>
+                                <input type="text" id="txModuCodi" name="txModuCodi" required="required" class="form-control" placeholder="Código del Modulo">
+                            </div><!-- /.form-group -->
+                  
+                            <div class="form-group">
+                                <label>Descripción: </label>
+                                <input type="text" id="txModuDesc" name="txModuDesc" class="form-control" placeholder="Descripción del Modulo">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-lg-4 control-label">Descripción de Modulo: </label>
-                <div class="col-lg-4">
-                    <input type="text" id="txModuDesc" name="txModuDesc">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <button type="submit" class="btn btn-success left">Registrarse</button>
-                </div>
-            </div>
-            
-            <input type="submit" value="Consultar" id="btSubmit" name ="btSubmit"/>
-            <input type="submit" value="Actualizar" id="btSubmit" name ="btSubmit"/>
-            <input type="submit" value="Guardar" id="btSubmit" name ="btSubmit"/>
-            <input type="submit" value="Eliminar" id="btSubmit" name ="btSubmit"/>
-        </form>
-        <button type="button" class="btn btn-success">Éxito</button>
-        <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    </body>
-</html>
+        </div>
+        <div class="col-md-6">
+            <div id="tabla" class="table table-bordered"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="button" value="Consultar" id="btConsultar" name ="btConsultar" class="btn btn-info pull-right"/>
+            <input type="button" value="Actualizar" id="btActualizar" name ="btActualizar" class="btn btn-info pull-right"/>
+            <input type="button" value="Guardar" id="btGuardar" name ="btGuardar" class="btn btn-info pull-right"/>
+            <input type="button" value="Eliminar" id="btEliminar" name ="btEliminar" class="btn btn-info pull-right"/>
+        </div>
+    </div>
+    </form>
+            <br>
+            <br>    
+</section>
+<jsp:include page="footer.jsp" />
