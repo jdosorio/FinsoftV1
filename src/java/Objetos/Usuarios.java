@@ -4,7 +4,7 @@ public class Usuarios
 {
     private final String Tabla = "USUARIOS";
     
-    private int    UsuaCodi = 0;
+    private int    UsuaCodi = -1;
     private String UsuaNom1 = "";
     private String UsuaNom2 = "";
     private String UsuaApe1 = "";

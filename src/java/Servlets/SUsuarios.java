@@ -34,6 +34,12 @@ public class SUsuarios extends HttpServlet {
             try
             {
                 Usuarios Usua = new Usuarios();
+                String Accion = request.getParameter("btSubmit");
+                int inUsuaCodi = Integer.parseInt(request.getParameter("txUsuaCodi"));
+                if(inUsuaCodi != -1)
+                {
+                    Usua.setUsuaCodi(inUsuaCodi);
+                }
                 Usua.setUsuaNom1(request.getParameter("txUsuaNom1"));
                 Usua.setUsuaNom2(request.getParameter("txUsuaNom2"));
                 Usua.setUsuaApe1(request.getParameter("txUsuaApe1"));
@@ -46,16 +52,9 @@ public class SUsuarios extends HttpServlet {
                 Usua.setUsuaPass(request.getParameter("txUsuaPass"));
                 Usua.setUsuaPerf(request.getParameter("txUsuaPerf"));
                 Usua.setUsuaEsta(request.getParameter("txUsuaEsta"));
-                String Accion = request.getParameter("btSubmit");
                 
                 CUsuarios cUsua = new CUsuarios(Usua);
-                if((!request.getParameter("txUsuaCodi").isEmpty() || !request.getParameter("txUsuaIden").isEmpty())
-                    )
-                {
-                    int inUsuaCodi = Integer.parseInt(request.getParameter("txUsuaCodi"));
-                    Usua.setUsuaCodi(inUsuaCodi);
-                   //cUsua.ValiExis(Usua);
-                }
+                
                 if(cUsua.UsuaCrud(Accion))
                 {
                     switch(Accion)
@@ -69,12 +68,62 @@ public class SUsuarios extends HttpServlet {
                         case "Eliminar":
                             CMensajes.Mensaje(4, response);
                         break;
+                        case "Consultar":
+                            Usua = cUsua.getUsuario();
+                            out.println("<table>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Código de Usuario:</label> "+Usua.getUsuaCodi()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Primer Nombre Usuario:</label> "+Usua.getUsuaNom1()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Segundo Nombre Usuario:</label> "+Usua.getUsuaNom2()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Primer Apellido Usuario:</label> "+Usua.getUsuaApe1()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Segundo Apellido Usuario:</label> "+Usua.getUsuaApe2()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Identificación Usuario:</label> "+Usua.getUsuaIden()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Correo Usuario:</label> "+Usua.getUsuaCorr()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Telefono#1 Usuario:</label> "+Usua.getUsuaTel1()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Telefono#2 Usuario:</label> "+Usua.getUsuaTel2()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Login Usuario:</label> "+Usua.getUsuaNick()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Contraseña Usuario:</label> "+Usua.getUsuaPass()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Perfil Usuario:</label> "+Usua.getUsuaPerf()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Estado de Usuario:</label> "+Usua.getUsuaEsta()+"</td>");
+                                out.println("</tr>");
+                            out.println("</table>");
+                        break;
                     }
-                    
                 }
                 else
                 {
-                    CMensajes.Mensaje(5, response);
+                    if(Accion.equals("Consultar"))
+                    {
+                        CMensajes.Mensaje(8, response);
+                    }
+                    else
+                    {
+                        CMensajes.Mensaje(5, response);
+                    }
                 }
             }
             catch(Exception x)

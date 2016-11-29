@@ -68,7 +68,7 @@ public class MUsuarios extends BaseDatos
             ryValores.add(Usua.getUsuaPass());
             ryValores.add(Usua.getUsuaPerf());
             ryValores.add(Usua.getUsuaEsta());
-            stSql = "pgPerfiles.prActuPerf(?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            stSql = "pgUsuarios.prActuUsua(?,?,?,?,?,?,?,?,?,?,?,?,?);";
             parametros(0);
             return true;
         }
@@ -83,25 +83,29 @@ public class MUsuarios extends BaseDatos
         try
         {
             conectar();
-            cs = cn.prepareCall("BEGIN pgUsuarios.prConsUsua(?,?); END;");
+            cs = cn.prepareCall("BEGIN pgUsuarios.prConsUsua(?,?,?); END;");
+            
             cs.setInt(1, Usua.getUsuaCodi());
-            cs.registerOutParameter(2, OracleTypes.CURSOR);
+            cs.setString(2, Usua.getUsuaIden());
+            cs.registerOutParameter(3, OracleTypes.CURSOR);
+            
             cs.execute();
-            rs = (ResultSet)cs.getObject(2);
+            rs = (ResultSet)cs.getObject(3);
             if(rs.next())
             {
-                Usua.setUsuaNom1(rs.getString(1));
-                Usua.setUsuaNom2(rs.getString(2));
-                Usua.setUsuaApe1(rs.getString(3));
-                Usua.setUsuaApe2(rs.getString(4));
-                Usua.setUsuaIden(rs.getString(5));
-                Usua.setUsuaCorr(rs.getString(6));
-                Usua.setUsuaTel1(rs.getString(7));
-                Usua.setUsuaTel2(rs.getString(8));
-                Usua.setUsuaNick(rs.getString(9));
-                Usua.setUsuaPass(rs.getString(10));
-                Usua.setUsuaPerf(rs.getString(11));
-                Usua.setUsuaEsta(rs.getString(12));
+                Usua.setUsuaCodi(rs.getInt(1));
+                Usua.setUsuaNom1(rs.getString(2));
+                Usua.setUsuaNom2(rs.getString(3));
+                Usua.setUsuaApe1(rs.getString(4));
+                Usua.setUsuaApe2(rs.getString(5));
+                Usua.setUsuaIden(rs.getString(6));
+                Usua.setUsuaCorr(rs.getString(7));
+                Usua.setUsuaTel1(rs.getString(8));
+                Usua.setUsuaTel2(rs.getString(9));
+                Usua.setUsuaNick(rs.getString(10));
+                Usua.setUsuaPass(rs.getString(11));
+                Usua.setUsuaPerf(rs.getString(12));
+                Usua.setUsuaEsta(rs.getString(13));
             }
             return Usua;
         }

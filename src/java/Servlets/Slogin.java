@@ -39,10 +39,23 @@ public class Slogin extends HttpServlet {
                 Usua = cUsua.ValiSesi(request.getParameter("txUsuaNick"),
                                       request.getParameter("txUsuaPass"),
                                       response);
-                if(Usua.getUsuaNom1() != null)
+                if(Usua.getUsuaNick().equals(""))
                 {
-                    HttpSession sesion = (HttpSession) request.getSession();
-                    sesion.setAttribute("usuario", Usua);
+                    CMensajes.Mensaje(6, response);//Usuario no existe
+                    response.sendRedirect("login.jsp");
+                }
+                else
+                {
+                    if(Usua.getUsuaNick() != "" && Usua.getUsuaNom1().equals("N"))
+                    {
+                        CMensajes.Mensaje(7, response);//Clave incorrecta
+                        response.sendRedirect("login.jsp");
+                    }
+                    else
+                    {
+                        HttpSession sesion = (HttpSession) request.getSession();
+                        sesion.setAttribute("usuario", Usua);
+                    }
                 }
                 
             }

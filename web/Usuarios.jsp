@@ -16,6 +16,18 @@
                     var Codigo = $('#txUsuaCodi').val();
                     var Iden = $('#txUsuaIden').val();
                     var Accion = "Consultar";
+                    
+                    if(Codigo.length == 0 && Iden.length == 0)
+                    {
+                        alert('Digite Código o Identificación para poder Consultar.');
+                        return;
+                    }
+                    
+                    if(Codigo.length == 0)
+                    {
+                        Codigo = -1;
+                    }
+                    
                     $.post('SUsuarios',
                     {
                         txUsuaCodi : Codigo,
@@ -29,7 +41,6 @@
 		});
                 $('#btGuardar').click(function(event)
                 {
-                    var Codigo = $('#txUsuaCodi').val();
                     var Nombre1 = $('#txUsuaNom1').val();
                     var Nombre2 = $('#txUsuaNom2').val();
                     var Apellido1 = $('#txUsuaApe1').val();
@@ -43,9 +54,19 @@
                     var Perfil = $('#txUsuaPerf').val();
                     var Estado = $('#txUsuaEsta').val();
                     var Accion = "Guardar";
+                    
+                    if(Nombre1.length == 0 || Nombre2.length == 0 || Apellido1.length == 0 ||
+                       Apellido2.length == 0 || Iden.length == 0 || Correo.length == 0 ||
+                       Tel1.length == 0 || Tel2.length == 0 || Nick.length == 0 ||
+                       Pass.length == 0 || Perfil.length == 0 || Estado.length == 0)
+                    {
+                        alert('Todos los Campos son Obligatorios.');
+                        return;
+                    }
+                    
                     $.post('SUsuarios',
                     {
-                        txUsuaCodi : Codigo,
+                        txUsuaCodi : -1,
                         txUsuaNom1 : Nombre1,
                         txUsuaNom2 : Nombre2,
                         txUsuaApe1 : Apellido1,
@@ -62,13 +83,20 @@
 			},
                     function(responseText)
                     {
-                        //$('#tabla').html(responseText);
+                        $('#tabla').html(responseText);
                     });
 		});
                 $('#btEliminar').click(function(event)
                 {
                     var Codigo = $('#txUsuaCodi').val();
                     var Accion = "Eliminar";
+                    
+                    if(Codigo.length == 0)
+                    {
+                        alert('Digite un Código para poder Consultar.');
+                        return;
+                    }
+                    
                     $.post('SUsuarios',
                     {
                         txUsuaCodi : Codigo,
@@ -76,7 +104,7 @@
 			},
                     function(responseText)
                     {
-                        //$('#tabla').html(responseText);
+                        $('#tabla').html(responseText);
                     });
 		});
                 $('#btActualizar').click(function(event)
@@ -95,6 +123,22 @@
                     var Perfil = $('#txUsuaPerf').val();
                     var Estado = $('#txUsuaEsta').val();
                     var Accion = "Actualizar";
+                    
+                    if(Codigo.length == 0)
+                    {
+                        alert('Digite un Código para poder Actualizar.');
+                        return;
+                    }
+                    
+                    if(Nombre1.length == 0 && Nombre2.length == 0 && Apellido1.length == 0 &&
+                       Apellido2.length == 0 && Iden.length == 0 && Correo.length == 0 &&
+                       Tel1.length == 0 && Tel2.length == 0 && Nick.length == 0 &&
+                       Pass.length == 0 && Perfil.length == 0 && Estado.length == 0)
+                    {
+                        alert('De llenar al menos uno de los campos para poder Actualizar.');
+                        return;
+                    }
+                    
                     $.post('SUsuarios',
                     {
                         txUsuaCodi : Codigo,
@@ -114,7 +158,7 @@
 			},
                     function(responseText)
                     {
-                        //$('#tabla').html(responseText);
+                        $('#tabla').html(responseText);
                     });
 		});
             });
@@ -124,92 +168,90 @@
             <div class="col-md-6">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Gestion de Usuarios</h3>
+                        <h3 class="box-title">Gestión de Usuarios</h3>
                         <div class="box-tools pull-right">
                             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         </div>
-                    </div><!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Código: </label>
-                                <input type="text" id="txUsuaCodi" name="txUsuaCodi" class="form-control" placeholder="Código de Usuario">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Primer Nombre: </label>
-                                <input type="text" id="txUsuaNom1" name="txUsuaNom1" class="form-control" placeholder="Primer Nombre de Usuario">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Segundo Nombre: </label>
-                                <input type="text" id="txUsuaNom2" name="txUsuaNom2" class="form-control" placeholder="Segundo Nombre de Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Primer Apellido: </label>
-                                <input type="text" id="txUsuaApe1" name="txUsuaApe1" class="form-control" placeholder="Primer Apellido del Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Segundo Apellido: </label>
-                                <input type="text" id="txUsuaApe2" name="txUsuaApe2" class="form-control" placeholder="Segundo Apellido del Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Identificación: </label>
-                                <input type="text" id="txUsuaIden" name="txUsuaIden" class="form-control" placeholder="Identificación del Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Correo: </label>
-                                <input type="text" id="txUsuaCorr" name="txUsuaCorr" class="form-control" placeholder="Correo del Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Celular: </label>
-                                <input type="text" id="txUsuaTel1" name="txUsuaTel1" class="form-control" placeholder="Numero Celular del Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Telefono Fijo: </label>
-                                <input type="text" id="txUsuaTel2" name="txUsuaTel2" class="form-control" placeholder="Numero Fijo del Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Login: </label>
-                                <input type="text" id="txUsuaNick" name="txUsuaNick" class="form-control" placeholder="Nickname del Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Contraseña: </label>
-                                <input type="text" id="txUsuaPass" name="txUsuaPass" class="form-control" placeholder="Contraseña de ingreso del Usuario">
-                            </div>
-                            <div class="form-group">
-                                <label>Perfil: </label>
-                                <select id="txUsuaPerf" name="txUsuaPerf" class="form-control">
-                                    <option value="ROT">ROOT</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Estado: </label>
-                                <select id="txUsuaEsta" name="txUsuaEsta" class="form-control">
-                                    <option value="act">Activo</option>
-                                    <option value="ina">Inactivo</option>
-                                </select>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Código: </label>
+                                    <input type="text" id="txUsuaCodi" name="txUsuaCodi" class="form-control" placeholder="Código de Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Primer Nombre: </label>
+                                    <input type="text" id="txUsuaNom1" name="txUsuaNom1" class="form-control" placeholder="Primer Nombre de Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Segundo Nombre: </label>
+                                    <input type="text" id="txUsuaNom2" name="txUsuaNom2" class="form-control" placeholder="Segundo Nombre de Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Primer Apellido: </label>
+                                    <input type="text" id="txUsuaApe1" name="txUsuaApe1" class="form-control" placeholder="Primer Apellido del Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Segundo Apellido: </label>
+                                    <input type="text" id="txUsuaApe2" name="txUsuaApe2" class="form-control" placeholder="Segundo Apellido del Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Identificación: </label>
+                                    <input type="text" id="txUsuaIden" name="txUsuaIden" class="form-control" placeholder="Identificación del Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Correo: </label>
+                                    <input type="text" id="txUsuaCorr" name="txUsuaCorr" class="form-control" placeholder="Correo del Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Celular: </label>
+                                    <input type="text" id="txUsuaTel1" name="txUsuaTel1" class="form-control" placeholder="Numero Celular del Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefono Fijo: </label>
+                                    <input type="text" id="txUsuaTel2" name="txUsuaTel2" class="form-control" placeholder="Numero Fijo del Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Login: </label>
+                                    <input type="text" id="txUsuaNick" name="txUsuaNick" class="form-control" placeholder="Nickname del Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Contraseña: </label>
+                                    <input type="text" id="txUsuaPass" name="txUsuaPass" class="form-control" placeholder="Contraseña de ingreso del Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label>Perfil: </label>
+                                    <select id="txUsuaPerf" name="txUsuaPerf" class="form-control">
+                                        <option value="ROT">ROOT</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Estado: </label>
+                                    <select id="txUsuaEsta" name="txUsuaEsta" class="form-control">
+                                        <option value="act">Activo</option>
+                                        <option value="ina">Inactivo</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div id="tabla" class="table table-bordered"></div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <div id="tabla" class="table table-bordered"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="button" value="Consultar" id="btConsultar" name ="btConsultar" class="btn btn-info pull-right"/>
+                <input type="button" value="Actualizar" id="btActualizar" name ="btActualizar" class="btn btn-info pull-right"/>
+                <input type="button" value="Guardar" id="btGuardar" name ="btGuardar" class="btn btn-info pull-right"/>
+                <input type="button" value="Eliminar" id="btEliminar" name ="btEliminar" class="btn btn-info pull-right"/>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <input type="button" value="Consultar" id="btConsultar" name ="btConsultar" class="btn btn-info pull-right"/>
-            <input type="button" value="Actualizar" id="btActualizar" name ="btActualizar" class="btn btn-info pull-right"/>
-            <input type="button" value="Guardar" id="btGuardar" name ="btGuardar" class="btn btn-info pull-right"/>
-            <input type="button" value="Eliminar" id="btEliminar" name ="btEliminar" class="btn btn-info pull-right"/>
-        </div>
-    </div>
     </form>
-            <br>
-            <br>    
+    <br>
+    <br>    
 </section>
 <jsp:include page="footer.jsp" />
