@@ -253,7 +253,7 @@
                     <label>Cuota</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                    <input type="text" class="form-control" name="txtSimuCuot" id="txtSimuCuot">
+                    <input type="text" class="form-control" name="txtSimuCuot" id="txtSimuCuot" onBlur="recalcularSimulacion()" value="0">
                     </div> 
                   </div><!-- /.form-group -->
                   <div class="form-group">
