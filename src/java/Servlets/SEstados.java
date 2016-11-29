@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import Controlador.CEstados;
@@ -42,17 +37,48 @@ public class SEstados extends HttpServlet {
                 Esta.setEstaCodi(request.getParameter("txEstaCodi"));
                 Esta.setEstaDesc(request.getParameter("txEstaDesc"));
                 Esta.setEstaFunc(request.getParameter("txEstaFunc"));
+                String Accion = request.getParameter("btSubmit");
                 CEstados cEsta = new CEstados(Esta);
-                //msg.println("<script language='JavaScript'>");
                 
-                if(cEsta.EstaCrud(request.getParameter("btSubmit")))
+                if(cEsta.EstaCrud(Accion))
                 {
-                    //msg.println("<script language='JavaScript'>");
-                    CMensajes.Mensaje(1, response);
+                    switch(Accion)
+                    {
+                        case "Guardar":
+                            CMensajes.Mensaje(2, response);
+                        break;
+                        case "Actualizar":
+                            CMensajes.Mensaje(3, response);
+                        break;
+                        case "Eliminar":
+                            CMensajes.Mensaje(4, response);
+                        break;
+                        case "Consultar":
+                            Esta = cEsta.getEstado();
+                            out.println("<table>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Código de Estado:</label> "+Esta.getEstaCodi()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Descripción de Estado:</label> "+Esta.getEstaDesc()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Función de Estado:</label> "+Esta.getEstaFunc()+"</td>");
+                                out.println("</tr>");
+                            out.println("</table>");
+                        break;
+                    }
                 }
                 else
                 {
-                    CMensajes.Mensaje(1, response);
+                    if(Accion.equals("Consultar"))
+                    {
+                        CMensajes.Mensaje(8, response);
+                    }
+                    else
+                    {
+                        CMensajes.Mensaje(5, response);
+                    }
                 }
             }
             catch(Exception x)

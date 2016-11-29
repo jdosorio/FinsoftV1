@@ -130,17 +130,17 @@
                 <i class="fa fa-cogs"></i> <span>Sistema</span><i class="fa fa-angle-down pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="Usuarios.jsp"><i class="fa fa-user"></i> Gestion Usuarios</a></li>
-                <li><a href="Paraoper.jsp"><i class="fa fa-wrench"></i> Parametros Generales</a></li>
+                <li class="active"><a href="Usuarios.jsp"><i class="fa fa-user"></i> Gestión Usuarios</a></li>
+                <li><a href="Paraoper.jsp"><i class="fa fa-wrench"></i> Parámetros Generales</a></li>
                 <li><a href="Estados.jsp"><i class="fa fa-wrench"></i> Estados del Sistema</a></li>
                 <li><a href="Perfiles.jsp"><i class="fa fa-wrench"></i> Perfiles del Sistema</a></li>
-                <li><a href="Modulos.jsp"><i class="fa fa-wrench"></i> Modulos del Sistema</a></li>
+                <li><a href="Modulos.jsp"><i class="fa fa-wrench"></i> Módulos del Sistema</a></li>
                 <li><a href="Entibanc.jsp"><i class="fa fa-bank"></i> Entidades Bancarias</a></li>
               </ul>
             </li>
             <li class="active treeview">
               <a href="#">
-                <i class="fa fa-bank"></i> <span>Modulo de Creditos</span>
+                <i class="fa fa-bank"></i> <span>Módulo de Creditos</span>
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="Clientes.jsp"><i class="fa fa-user"></i> Clientes</a></li>
@@ -149,7 +149,7 @@
             </li>
             <li class="active treeview">
               <a href="#">
-                <i class="fa fa-file-pdf-o"></i> <span>Modulo Reportes</span>
+                <i class="fa fa-file-pdf-o"></i> <span>Módulo Reportes</span>
               </a>
             </li>
         </section>

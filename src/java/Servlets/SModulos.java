@@ -27,16 +27,45 @@ public class SModulos extends HttpServlet {
                 Modulos Modu = new Modulos();
                 Modu.setModuCodi(request.getParameter("txModuCodi"));
                 Modu.setModuDesc(request.getParameter("txModuDesc"));
+                String Accion = request.getParameter("btSubmit");
                 CModulos cModu = new CModulos(Modu);
-                //msg.println("<script language='JavaScript'>");
                 
-                if(cModu.ModuCrud(request.getParameter("btSubmit")))
+                if(cModu.ModuCrud(Accion))
                 {
-                    CMensajes.Mensaje(1, response);
+                    switch(Accion)
+                    {
+                        case "Guardar":
+                            CMensajes.Mensaje(2, response);
+                        break;
+                        case "Actualizar":
+                            CMensajes.Mensaje(3, response);
+                        break;
+                        case "Eliminar":
+                            CMensajes.Mensaje(4, response);
+                        break;
+                        case "Consultar":
+                            Modu = cModu.getModulo();
+                            out.println("<table>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Código de Módulo:</label> "+Modu.getModuCodi()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Descripción de Módulo:</label> "+Modu.getModuDesc()+"</td>");
+                                out.println("</tr>");
+                            out.println("</table>");
+                        break;
+                    }
                 }
                 else
                 {
-                    CMensajes.Mensaje(1, response);
+                    if(Accion.equals("Consultar"))
+                    {
+                        CMensajes.Mensaje(8, response);
+                    }
+                    else
+                    {
+                        CMensajes.Mensaje(5, response);
+                    }
                 }
             }
             catch(Exception x)

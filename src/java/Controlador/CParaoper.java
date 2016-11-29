@@ -52,4 +52,9 @@ public class CParaoper
             throw x;
         }
     }
+    
+    public Paraoper getParametro()
+    {
+        return Paop;
+    }
 }
