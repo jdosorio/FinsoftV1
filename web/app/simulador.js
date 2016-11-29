@@ -13,6 +13,11 @@ var papeleria = 0.009;
 var gmf = 0.04;
 
 function recalcularSimulacion(){
+    
+    if(txtSimuBasi.value < 0){
+        alert("Debe digitar primero el salario basico para realizar los respectivos calculos");
+        return false;
+    }
     txtSimuPlaz.value = plazo;
     txtSimuTasa.value = tasa;
     txtSimuApor.value = Math.round(parseInt(txtSimuBasi.value) * 0.08);
@@ -27,7 +32,13 @@ function recalcularSimulacion(){
     
     txtSimuSlib.value = Math.round(base - parseInt(txtSimuTegr.value));
     
-    txtSimuCuot.value = txtSimuSlib.value;
+    if(txtSimuCuot.value != 0){
+    
+    txtSimuCuot.value = txtSimuCuot.value;
+    
+    }else{
+        txtSimuCuot.value = txtSimuSlib.value;
+    }
     
     txtSimuCred.value = Math.round(parseInt(txtSimuCuot.value) * ((Math.pow(1 + (parseFloat(txtSimuTasa.value) / 100.00), parseInt(txtSimuPlaz.value)) - 1) / ((parseFloat(txtSimuTasa.value) / 100.00) * Math.pow(1 + (parseFloat(txtSimuTasa.value) / 100.00), parseInt(txtSimuPlaz.value)))));
     
