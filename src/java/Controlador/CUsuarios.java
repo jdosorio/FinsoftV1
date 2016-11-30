@@ -56,28 +56,41 @@ public class CUsuarios
         }
     }
     
+    public Usuarios getUsuario()
+    {
+        return Usua;
+    }
+    
     public Usuarios ValiSesi(String Login, String Contrase, HttpServletResponse response) throws Exception
     {
         Object[] Result = new Object[2];
+        String stRespuest = "";
+        int inCodigo = -1;
         try
         {
+            Usua = new Usuarios();
             MUsuarios mUsua = new MUsuarios();
             Result = mUsua.Sesion(Login, Contrase);
-            if((int)Result[1] == 0)
+            stRespuest = (String)Result[0];
+            inCodigo = (int)Result[1];
+            if(inCodigo == 0)
             {
-                CMensajes.Mensaje(6, response);//Usuario no existe
-                response.sendRedirect("login.jsp");
+                //CMensajes.Mensaje(6, response);//Usuario no existe
+                //response.sendRedirect("login.jsp");
+                Usua.setUsuaNick("");
             }
             else
             {
-                if((String)Result[0] == "N")
+                if(stRespuest.equals("N"))
                 {
-                    CMensajes.Mensaje(7, response);//Clave incorrecta
-                    response.sendRedirect("login.jsp");
+                    //CMensajes.Mensaje(7, response);//Clave incorrecta
+                    //response.sendRedirect("login.jsp");
+                    Usua.setUsuaNick(Login);
+                    Usua.setUsuaNom1("N");
                 }
                 else
                 {
-                    Usua.setUsuaCodi((int)Result[1]);
+                    Usua.setUsuaCodi(inCodigo);
                     if(UsuaCrud("Consultar"))
                     {
                         response.sendRedirect("view.jsp");

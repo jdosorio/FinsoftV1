@@ -1,8 +1,5 @@
 package Servlets;
 
-import Controlador.CMensajes;
-import Controlador.CUsuarios;
-import Objetos.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,14 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author FELIPE
- */
-@WebServlet(name = "Slogin", urlPatterns = {"/Slogin"})
-public class Slogin extends HttpServlet {
+import Controlador.CUsuarios;
+import Model.MUsuarios;
+import Objetos.Usuarios;
+
+@WebServlet(name = "Index", urlPatterns = {"/Index"})
+public class Index extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,40 +28,20 @@ public class Slogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            try
-            {
-                Usuarios Usua = new Usuarios();
-                CUsuarios cUsua = new CUsuarios();
-                Usua = cUsua.ValiSesi(request.getParameter("txUsuaNick"),
-                                      request.getParameter("txUsuaPass"),
-                                      response);
-                if(Usua.getUsuaNick().equals(""))
-                {
-                    CMensajes.Mensaje(6, response);//Usuario no existe
-                    response.sendRedirect("login.jsp");
-                }
-                else
-                {
-                    if(Usua.getUsuaNick() != "" && Usua.getUsuaNom1().equals("N"))
-                    {
-                        CMensajes.Mensaje(7, response);//Clave incorrecta
-                        response.sendRedirect("login.jsp");
-                    }
-                    else
-                    {
-                        HttpSession sesion = (HttpSession) request.getSession();
-                        sesion.setAttribute("usuario", Usua);
-                    }
-                }
-                
-            }
-            catch(Exception x)
-            {
-                CMensajes.Mensaje(x.toString(), response);
-            }
+          try
+          {
+              Usuarios Usua = new Usuarios();
+            Usua.setUsuaNick(request.getParameter("txLogin"));
+            Usua.setUsuaPass(request.getParameter("txPass"));
+            
+            //CtrlUsua cUsua = new CtrlUsua(Usua);
+            
+          }
+          catch(Exception x){
+              
+          }
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -104,5 +80,4 @@ public class Slogin extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

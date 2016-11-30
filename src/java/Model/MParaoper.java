@@ -66,7 +66,7 @@ public class MParaoper extends BaseDatos
         try
         {
             conectar();
-            cs = cn.prepareCall("BEGIN pgPerfiles.prConsPerf(?,?); END;");
+            cs = cn.prepareCall("BEGIN pgParaoper.prConsPaop(?,?); END;");
             cs.setString(1, Paop.getPaopCodi());
             cs.registerOutParameter(2, OracleTypes.CURSOR);
             cs.execute();

@@ -52,4 +52,9 @@ public class CPerfiles
             throw x;
         }
     }
+    
+    public Perfiles getPerfil()
+    {
+        return Perf;
+    }
 }

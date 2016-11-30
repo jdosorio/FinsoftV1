@@ -39,15 +39,54 @@ public class SPerfiles extends HttpServlet {
                 Perf.setPerfTipo(request.getParameter("txPerfTipo"));
                 Perf.setPerfFunc(request.getParameter("txPerfFunc"));
                 Perf.setPerfEsta(request.getParameter("txPerfEsta"));
+                String Accion = request.getParameter("btSubmit");
                 CPerfiles cPerf = new CPerfiles(Perf);
                 
-                if(cPerf.PerfCrud(request.getParameter("btSubmit")))
+                if(cPerf.PerfCrud(Accion))
                 {
-                    CMensajes.Mensaje(1, response);
+                    switch(Accion)
+                    {
+                        case "Guardar":
+                            CMensajes.Mensaje(2, response);
+                        break;
+                        case "Actualizar":
+                            CMensajes.Mensaje(3, response);
+                        break;
+                        case "Eliminar":
+                            CMensajes.Mensaje(4, response);
+                        break;
+                        case "Consultar":
+                            Perf = cPerf.getPerfil();
+                            out.println("<table>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Código de Perfil:</label> "+Perf.getPerfCodi()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Descripción de Perfil:</label> "+Perf.getPerfDesc()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Tipo de Perfil:</label> "+Perf.getPerfTipo()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Función de Perfil:</label> "+Perf.getPerfFunc()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Estado de Perfil:</label> "+Perf.getPerfEsta()+"</td>");
+                                out.println("</tr>");
+                            out.println("</table>");
+                        break;
+                    }
                 }
                 else
                 {
-                    CMensajes.Mensaje(5, response);
+                    if(Accion.equals("Consultar"))
+                    {
+                        CMensajes.Mensaje(8, response);
+                    }
+                    else
+                    {
+                        CMensajes.Mensaje(5, response);
+                    }
                 }
             }
             catch(Exception x)

@@ -34,19 +34,55 @@ public class SParaoper extends HttpServlet {
             try
             {
                 Paraoper Paop = new Paraoper();
-                Paop.setPaopCodi(request.getParameter("txPerfCodi"));
-                Paop.setPaopDesc(request.getParameter("txPerfDesc"));
-                Paop.setPaopValo(request.getParameter("txPerfFunc"));
-                Paop.setPaopModu(request.getParameter("txPerfFunc"));
+                Paop.setPaopCodi(request.getParameter("txPaopCodi"));
+                Paop.setPaopDesc(request.getParameter("txPaopDesc"));
+                Paop.setPaopValo(request.getParameter("txPaopValo"));
+                Paop.setPaopModu(request.getParameter("txPaopModu"));
+                String Accion = request.getParameter("btSubmit");
                 CParaoper cPaop = new CParaoper(Paop);
                 
-                if(cPaop.PaopCrud(request.getParameter("btSubmit")))
+                if(cPaop.PaopCrud(Accion))
                 {
-                    CMensajes.Mensaje(1, response);
+                    switch(Accion)
+                    {
+                        case "Guardar":
+                            CMensajes.Mensaje(2, response);
+                        break;
+                        case "Actualizar":
+                            CMensajes.Mensaje(3, response);
+                        break;
+                        case "Eliminar":
+                            CMensajes.Mensaje(4, response);
+                        break;
+                        case "Consultar":
+                            Paop = cPaop.getParametro();
+                            out.println("<table>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Código de Parámetro:</label> "+Paop.getPaopCodi()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Descripción de Parámetro:</label> "+Paop.getPaopDesc()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Valor de Parámetro:</label> "+Paop.getPaopValo()+"</td>");
+                                out.println("</tr>");
+                                out.println("<tr>");
+                                    out.println("<td> <label>Módulo de Parámetro:</label> "+Paop.getPaopModu()+"</td>");
+                                out.println("</tr>");
+                            out.println("</table>");
+                        break;
+                    }
                 }
                 else
                 {
-                    CMensajes.Mensaje(5, response);
+                    if(Accion.equals("Consultar"))
+                    {
+                        CMensajes.Mensaje(8, response);
+                    }
+                    else
+                    {
+                        CMensajes.Mensaje(5, response);
+                    }
                 }
             }
             catch(Exception x)
