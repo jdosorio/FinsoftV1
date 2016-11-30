@@ -268,11 +268,11 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Plazo</label>
-                    <input class="form-control" type="text" placeholder="ejemplo" name="txtSimuPlaz" id="txtSimuPlaz">
+                    <input class="form-control" type="text" placeholder="ejemplo" name="txtSimuPlaz" id="txtSimuPlaz" onBlur="recalcularSimulacion()" value="84">
                   </div><!-- /.form-group -->
                   <div class="form-group">
                     <label>Tasa</label>
-                    <input class="form-control" type="text" placeholder="ejemplo" name="txtSimuTasa" id="txtSimuTasa">
+                    <input class="form-control" type="text" placeholder="ejemplo" name="txtSimuTasa" id="txtSimuTasa" onBlur="recalcularSimulacion()" value="1.2">
                   </div><!-- /.form-group -->
                   <!-- /.form-group -->
                   </div><!-- /.col -->
