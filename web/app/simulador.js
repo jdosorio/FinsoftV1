@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 var glbLey = 2*689454;
-var tasa = 1.2;
-var plazo = 84;
 
 var asesoria = 0.02;
 var iva = 0.16;
@@ -18,8 +16,7 @@ function recalcularSimulacion(){
         alert("Debe digitar primero el salario basico para realizar los respectivos calculos");
         return false;
     }
-    txtSimuPlaz.value = plazo;
-    txtSimuTasa.value = tasa;
+   
     txtSimuApor.value = Math.round(parseInt(txtSimuBasi.value) * 0.08);
     txtSimuTing.value = Math.round(parseInt(txtSimuBasi.value) + parseInt(txtSimuAdic.value));
     txtSimuInapo.value = Math.round(parseInt(txtSimuTing.value) - parseInt(txtSimuApor.value));
@@ -32,7 +29,7 @@ function recalcularSimulacion(){
     
     txtSimuSlib.value = Math.round(base - parseInt(txtSimuTegr.value));
     
-    if(txtSimuCuot.value != 0){
+    if(txtSimuCuot.value != 0 && txtSimuTegr.value == 0){
     
     txtSimuCuot.value = txtSimuCuot.value;
     
