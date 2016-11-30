@@ -165,7 +165,7 @@
     </script>
     <form id="fmUsuarios" name="fmUsuarios" method="post">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <h3 class="box-title">Gestión de Usuarios</h3>
@@ -204,6 +204,11 @@
                                     <label>Correo: </label>
                                     <input type="text" id="txUsuaCorr" name="txUsuaCorr" class="form-control" placeholder="Correo del Usuario">
                                 </div>
+                            </div>
+                        
+                        
+                        
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Celular: </label>
                                     <input type="text" id="txUsuaTel1" name="txUsuaTel1" class="form-control" placeholder="Numero Celular del Usuario">
@@ -234,22 +239,29 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        
+                    
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div id="tabla" class="table table-bordered"></div>
-            </div>
+            
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <input type="button" value="Consultar" id="btConsultar" name ="btConsultar" class="btn btn-info pull-right"/>
+            <div class="col-md-2"></div>    
+            <div class="col-md-7">
+                <div class="col-md-3">
+                    <input type="button" value="Consultar" id="btConsultar" name ="btConsultar" class="btn btn-info pull-right"/>
+                </div>
+                <div class="col-md-3">
                 <input type="button" value="Actualizar" id="btActualizar" name ="btActualizar" class="btn btn-info pull-right"/>
-                <input type="button" value="Guardar" id="btGuardar" name ="btGuardar" class="btn btn-info pull-right"/>
-                <input type="button" value="Eliminar" id="btEliminar" name ="btEliminar" class="btn btn-info pull-right"/>
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Guardar" id="btGuardar" name ="btGuardar" class="btn btn-info pull-right"/>
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Eliminar" id="btEliminar" name ="btEliminar" class="btn btn-info pull-right"/>
+                </div>
             </div>
-        </div>
+        
     </form>
     <br>
     <br>    
