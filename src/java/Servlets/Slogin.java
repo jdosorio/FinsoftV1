@@ -43,6 +43,7 @@ public class Slogin extends HttpServlet {
                 {
                     CMensajes.Mensaje(6, response);//Usuario no existe
                     response.sendRedirect("login.jsp");
+                    CMensajes.Mensaje(6, response);//Usuario no existe
                 }
                 else
                 {
