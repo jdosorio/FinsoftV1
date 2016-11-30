@@ -16,8 +16,6 @@ public class Simulado
     private int    SimuAdic = 0;
     private int    SimuToin = 0;
     private int    SimuAple = 0;
-    private int    SimuOtap = 0;
-    private int    SimuToap = 0;
     private int    SimuInma = 0;
     private int    SimuSalm = 0;
     private String SimuEmba = "";
@@ -26,20 +24,16 @@ public class Simulado
     private int    SimuTasa = 0;
     private Date   SimuPlaz = null;
     private int    SimuOdli = 0;
-    private int    SimuOdco = 0;
-    private int    SimuOdmp = 0;
-    private int    SimuOdso = 0;
-    private int    SimuInan = 0;
     private int    SimuAsfi = 0;
     private int    SimuIva =  0;
     private int    SimuGmf =  0;
     private int    SimuVlde = 0;
     private int    SimuVlcr = 0;
-    private String SimuObse = "";
     private String SimuEsta = "";
     private int    SimuUsua = 0;
     private Date   SimuFesi = null;
     private String SimuUssi = "";
+    private int    SimuPape = 0;
     
     public String getTabla()
     {
@@ -98,24 +92,6 @@ public class Simulado
     public int getSimuAple()
     {
         return SimuAple;
-    }
-    
-    public void setSimuOtap(int SimuOtap)
-    {
-        this.SimuOtap = SimuOtap;
-    }
-    public int getSimuOtap()
-    {
-        return SimuOtap;
-    }
-    
-    public void setSimuToap(int SimuToap)
-    {
-        this.SimuToap = SimuToap;
-    }
-    public int getSimuToap()
-    {
-        return SimuToap;
     }
     
     public void setSimuInma(int SimuInma)
@@ -190,42 +166,6 @@ public class Simulado
         return SimuOdli;
     }
     
-    public void setSimuOdco(int SimuOdco)
-    {
-        this.SimuOdco = SimuOdco;
-    }
-    public int getSimuOdco()
-    {
-        return SimuOdco;
-    }
-    
-    public void setSimuOdmp(int SimuOdmp)
-    {
-        this.SimuOdmp = SimuOdmp;
-    }
-    public int getSimuOdmp()
-    {
-        return SimuOdmp;
-    }
-    
-    public void setSimuOdso(int SimuOdso)
-    {
-        this.SimuOdso = SimuOdso;
-    }
-    public int getSimuOdso()
-    {
-        return SimuOdso;
-    }
-    
-    public void setSimuInan(int SimuInan)
-    {
-        this.SimuInan = SimuInan;
-    }
-    public int getSimuInan()
-    {
-        return SimuInan;
-    }
-    
     public void setSimuAsfi(int SimuAsfi)
     {
         this.SimuAsfi = SimuAsfi;
@@ -271,15 +211,6 @@ public class Simulado
         return SimuVlcr;
     }
     
-    public void setSimuObse(String SimuObse)
-    {
-        this.SimuObse = SimuObse;
-    }
-    public String getSimuObse()
-    {
-        return SimuObse;
-    }
-    
     public void setSimuEsta(String SimuEsta)
     {
         this.SimuEsta = SimuEsta;
@@ -315,5 +246,14 @@ public class Simulado
     public String getSimuUssi()
     {
         return SimuUssi;
+    }
+    
+    public void setSimuPape(int SimuPape)
+    {
+        this.SimuPape = SimuPape;
+    }
+    public int getSimuPape()
+    {
+        return SimuPape;
     }
 }
