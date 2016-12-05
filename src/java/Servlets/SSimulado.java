@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import Controlador.CClientes;
@@ -61,13 +56,12 @@ public class SSimulado extends HttpServlet {
                 Clie.setClieCorr(request.getParameter("txClieCorr"));
                 int inClieSaba = Integer.parseInt(request.getParameter("txClieSaba"));
                 Clie.setClieSaba(inClieSaba);
-                String Accion = "";
+                String Accion = "Guardar";
                 CClientes cClie = new CClientes(Clie);
                 
                 if(cClie.ClieCrud("Consultar"))
                 {
                     Clie = cClie.getCliente();
-                    Accion = "Actualizar";
                 }
                 else
                 {
