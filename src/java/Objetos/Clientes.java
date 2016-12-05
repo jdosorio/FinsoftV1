@@ -1,6 +1,8 @@
 package Objetos;
 
-import java.sql.Date;
+import java.util.Date;
+
+
 
 /**
  *
@@ -10,7 +12,7 @@ public class Clientes
 {
     private final String Tabla = "CLIENTES";
     
-    private int    ClieCodi = 0;
+    private int    ClieCodi = -1;
     private String ClieNom1 = "";
     private String ClieNom2 = "";
     private String ClieApe1 = "";

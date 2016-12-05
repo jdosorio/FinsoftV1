@@ -10,22 +10,83 @@
 <script src="app/simulador.js"></script>
 <script>
     function sendForm()
-{
-	$.ajax({
-                    url: "SSimulado",
-                    type: "POST",
-                    dataType: 'json',
-                    timeout: 30000,
-                    data: { data_frm: $(document.forms.fmSimulado).serializeArray()},
-                    cache: false,
-                    success: function (data) {
-						//console.log(data);
-						console.log(data);
-					},
-                    error: function (data) { console.log(data); }
-    });
-}
-    
+    {
+            //CLIENTES
+            var ClieIden = $('#txSimuCedu').val();
+            var ClieNom1 = $('#txSimuNom1').val();
+            var ClieNom2 = $('#txSimuNom2').val();
+            var ClieApe1 = $('#txtSimuApe1').val();
+            var ClieApe2 = $('#txSimuApe2').val();
+            var ClieNaci = $('#txtSimuNaci').val();
+            var ClieTele = $('#txSimuTele').val();
+            var ClieDire = $('#txSimuDire').val();
+            var ClieMail = $('#txtSimuMail').val();
+            var ClieBasi = $('#txtSimuBasi').val();
+            
+            //SIMULADO
+            var SimuEmba = $('#slSimuEmba').val();
+            var SimuTico = $('#slSimuCont').val();
+            var SimuPucn = $('#txtSimuCifi').val();
+            var SimuPudc = $('#txtSimuData').val();
+            var SiobObse = $('#txtSimuObse').val();
+            var SimuAdic = $('#txtSimuAdic').val();
+            var SimuToin = $('#txtSimuTing').val();
+            var SimuInma = $('#txtSimuInapo').val();
+            var SimuAple = $('#txtSimuApor').val();
+            var SimuToeg = $('#txtSimuTegr').val();
+            var SimuSalm = $('#txtSimuSlib').val();
+            var SimuCuot = $('#txtSimuCuot').val();
+            var SimuVlcr = $('#txtSimuCred').val();
+            var SimuPlaz = $('#txtSimuPlaz').val();
+            var SimuAsfi = $('#txtSimuAfin').val();
+            var SimuIva = $('#txtSimuIva').val();
+            var SimuPape = $('#txtSimuPape').val();
+            var SimuGmf = $('#txtSimuGmf').val();
+            var SimuVlde = $('#txtSimuDese').val();
+            var SimuOdli = $('#txtSimuDeci').val();
+            var SimuEsta = $('#txtSimuSube').val();
+            var SimuTasa = $('#txtSimuTasa').val();
+            
+            $.post('SSimulado',
+            {
+                txClieIden : ClieIden,
+                txClieNom1 : ClieNom1,
+                txClieNom2 : ClieNom2,
+                txClieApe1 : ClieApe1,
+                txClieApe2 : ClieApe2,
+                txClieFena : ClieNaci,
+                txClieTel1 : ClieTele,
+                txClieDire : ClieDire,
+                txClieCorr : ClieMail,
+                txClieSaba : ClieBasi,
+                SimuEmba : SimuEmba,
+                SimuTico : SimuTico,
+                SimuPucn : SimuPucn,
+                SimuPudc : SimuPudc,
+                SiobObse : SiobObse,
+                SimuAdic : SimuAdic,
+                SimuToin : SimuToin,
+                SimuInma : SimuInma,
+                SimuAple : SimuAple,
+                SimuToeg : SimuToeg,
+                SimuSalm : SimuSalm,
+                SimuCuot : SimuCuot,
+                SimuVlcr : SimuVlcr,
+                SimuPlaz : SimuPlaz,
+                SimuAsfi : SimuAsfi,
+                SimuIva  : SimuIva,
+                SimuPape : SimuPape,
+                SimuGmf  : SimuGmf,
+                SimuVlde : SimuVlde,
+                SimuOdli : SimuOdli,
+                SimuEsta : SimuEsta,
+                SimuTasa : SimuTasa
+            },
+            function(responseText)
+            {
+                $('#tabla').html(responseText);
+            });
+    }
 </script>
 <form id="fmSimulado" name="fmSimulado" method="post">
     <section class="content">
@@ -43,56 +104,56 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Primer Apellido</label>
-                                    <input class="form-control" name="txtSimuApe1" id="txtSimuApe1" type="text" placeholder="ejemplo">
+                                    <input class="form-control" name="txtSimuApe1" id="txtSimuApe1" type="text" placeholder="Primer Apellido Cliente">
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
                                     <label>Primer Nombre</label>
-                                    <input class="form-control" type="text" name="txSimuNom1" id="txSimuNom1" placeholder="ejemplo">
+                                    <input class="form-control" type="text" name="txSimuNom1" id="txSimuNom1" placeholder="Primer Nombre Cliente">
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
                                     <label>Cedula</label>
-                                    <input class="form-control" type="text" name="txSimuCedu" id="txSimuCedu"placeholder="ejemplo">
+                                    <input class="form-control" type="text" name="txSimuCedu" id="txSimuCedu" placeholder="Identificación del Cliente">
                                 </div><!-- /.form-group --> 
 
                                 <div class="form-group">
-                                    <label>US phone mask:</label>
+                                    <label>Contacto:</label>
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-phone"></i>
                                         </div>
-                                        <input type="text" class="form-control" name="txSimuTele" id="txSimuTele">
+                                        <input type="text" class="form-control" name="txSimuTele" id="txSimuTele" placeholder="Numero de Telefono Cliente">
                                     </div><!-- /.input group -->
                                 </div><!-- /.form group --><!-- /.form-group -->
 
                                 <div class="form-group">
                                     <label>Direccion</label>
-                                    <input class="form-control" name="txSimuDire" id="txSimuDire" type="text" placeholder="ejemplo">
+                                    <input class="form-control" name="txSimuDire" id="txSimuDire" type="text" placeholder="Direccion de Vivienda Cliente">
                                 </div><!-- /.form-group -->
                             </div><!-- /.col -->
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                   <label>Segundo Apellido</label>
-                                  <input class="form-control" type="text" name="txSimuApe2" id="txSimuApe2" placeholder="ejemplo">
+                                  <input class="form-control" type="text" name="txSimuApe2" id="txSimuApe2" placeholder="Segundo Apellido del Cliente">
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
                                   <label>Segundo Nombre</label>
-                                  <input class="form-control" type="text" name="txSimuNom2" id="txSimuNom2" placeholder="ejemplo">
+                                  <input class="form-control" type="text" name="txSimuNom2" id="txSimuNom2" placeholder="Segundo Nombre del Cliente">
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
                                   <label>Fecha Nacimiento</label>
-                                  <input class="form-control" type="text" name="txtSimuNaci" id="txtSimuNaci" placeholder="ejemplo">
+                                  <input class="form-control" type="text" name="txtSimuNaci" id="txtSimuNaci" placeholder="Fecha Nacimiento Cliente">
                                 </div>
 
                                 <div class="form-group">
                                     <label>eMail</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">@</span>
-                                        <input type="text" class="form-control" name="txtSimuMail" id="txtSimuMail" placeholder="Username">
+                                        <input type="text" class="form-control" name="txtSimuMail" id="txtSimuMail" placeholder="Correo Cliente">
                                     </div>
                                 </div><!-- /.form-group -->
 
@@ -121,19 +182,17 @@
                                 <div class="form-group">
                                     <label>Embargado</label>
                                     <select class="form-control select2" style="width: 100%;" name="slSimuEmba" id="slSimuEmba">
-                                        <option></option>
-                                        <option>Si</option>
-                                        <option>No</option>
+                                        <option value="N">No</option>
+                                        <option value="S">Si</option>
                                     </select>
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
                                     <label>Tipo Contrato</label>
                                     <select class="form-control select2" style="width: 100%;" name="slSimuCont" id="slSimuCont">
-                                        <option></option>
-                                        <option>Termio Fijo</option>
-                                        <option>Indefinido</option>
-                                        <option>Pensionado</option>
+                                        <option value="T">Termio Fijo</option>
+                                        <option value="I">Indefinido</option>
+                                        <option value="P">Pensionado</option>
                                     </select>
                                 </div><!-- /.form-group -->
                             </div><!-- /.col -->
@@ -197,8 +256,6 @@
                 </div><!-- /.box (chat box) -->
             </div>
             <!-- Columna Izquierda -->
-
-
             <!-- Columna Derecha -->
                 <div class="col-md-6">
                   <div class="box box-default">
@@ -371,10 +428,14 @@
                       <div class="form-group">
                         <label>Subestado</label>
                         <select class="form-control select2" style="width: 100%;" name="txtSimuSube" id="txtSimuSube">
-                          <option></option>
-                          <option>Termio Fijo</option>
-                          <option>Indefinido</option>
-                          <option>Pensionado</option>
+                          <option value="pro">Procesado</option>
+                          <option value="rad">Radicado</option>
+                          <option value="fir">Firmado</option>
+                          <option value="con">Confirmado</option>
+                          <option value="cup">Cupo</option>
+                          <option value="emb">Embargado</option>
+                          <option value="tco">Tipo Contrato</option>
+                          <option value="pol">Politicas</option>
                         </select>
                       </div><!-- /.form-group -->
                     </div><!-- /.col -->

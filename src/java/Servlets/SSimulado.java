@@ -5,12 +5,15 @@
  */
 package Servlets;
 
+import Controlador.CClientes;
 import Controlador.CMensajes;
 import Controlador.CSimulador;
-import Controlador.CUsuarios;
+import Objetos.Clientes;
 import Objetos.Simulado;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,31 +44,85 @@ public class SSimulado extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
            try
             {
-                //Simulado Simu = new Simulado();
-                //String Accion = request.getParameter("btSubmit");
-                  String data = request.getParameter("data_form");
-
-                out.println(data);
-                /*if(inUsuaCodi != -1)
+                Simulado Simu = new Simulado();
+                Clientes Clie = new Clientes();
+                SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+                
+                Clie.setClieIden(request.getParameter("txClieIden"));
+                Clie.setClieNom1(request.getParameter("txClieNom1"));
+                Clie.setClieNom2(request.getParameter("txClieNom2"));
+                Clie.setClieApe1(request.getParameter("txClieApe1"));
+                Clie.setClieApe2(request.getParameter("txClieApe2"));
+                Date dtClieFena = (Date)fecha.parse(request.getParameter("txClieFena"));
+                Clie.setClieFena(dtClieFena);
+                Clie.setClieTel1(request.getParameter("txClieTel1"));
+                Clie.setClieTel2(request.getParameter("txClieTel1"));
+                Clie.setClieDire(request.getParameter("txClieDire"));
+                Clie.setClieCorr(request.getParameter("txClieCorr"));
+                int inClieSaba = Integer.parseInt(request.getParameter("txClieSaba"));
+                Clie.setClieSaba(inClieSaba);
+                String Accion = "";
+                CClientes cClie = new CClientes(Clie);
+                
+                if(cClie.ClieCrud("Consultar"))
                 {
-                    Simu.setUsuaCodi(inUsuaCodi);
+                    Clie = cClie.getCliente();
+                    Accion = "Actualizar";
                 }
-                Usua.setUsuaNom1(request.getParameter("txUsuaNom1"));
-                Usua.setUsuaNom2(request.getParameter("txUsuaNom2"));
-                Usua.setUsuaApe1(request.getParameter("txUsuaApe1"));
-                Usua.setUsuaApe2(request.getParameter("txUsuaApe2"));
-                Usua.setUsuaIden(request.getParameter("txUsuaIden"));
-                Usua.setUsuaCorr(request.getParameter("txUsuaCorr"));
-                Usua.setUsuaTel1(request.getParameter("txUsuaTel1"));
-                Usua.setUsuaTel2(request.getParameter("txUsuaTel2"));
-                Usua.setUsuaNick(request.getParameter("txUsuaNick"));
-                Usua.setUsuaPass(request.getParameter("txUsuaPass"));
-                Usua.setUsuaPerf(request.getParameter("txUsuaPerf"));
-                Usua.setUsuaEsta(request.getParameter("txUsuaEsta"));
+                else
+                {
+                    if(cClie.ClieCrud("Guardar"))
+                    {
+                        cClie = new CClientes(Clie);
+                        if(cClie.ClieCrud("Consultar"))
+                        {
+                            Clie = cClie.getCliente();
+                        }
+                    }
+                }
+                String stSimuTico = request.getParameter("SimuTico");
+                String stSiobObse = request.getParameter("SiobObse");
+                double dbSimuToeg = Double.valueOf(request.getParameter("SimuToeg"));
+                double dbSimuCuot = Double.valueOf(request.getParameter("SimuCuot"));
                 
+                Simu.setSimuClie(Clie.getClieCodi());
+                Simu.setSimuEmba(request.getParameter("SimuEmba"));
+                double dbSimuPucn = Double.valueOf(request.getParameter("SimuPucn"));
+                Simu.setSimuPucn(dbSimuPucn);
+                double dbSimuPudc = Double.valueOf(request.getParameter("SimuPudc"));
+                Simu.setSimuPudc(dbSimuPudc);
+                double dbSimuAdic = Double.valueOf(request.getParameter("SimuAdic"));
+                Simu.setSimuAdic(dbSimuAdic);
+                double dbSimuToin = Double.valueOf(request.getParameter("SimuToin"));
+                Simu.setSimuToin(dbSimuToin);
+                double dbSimuInma = Double.valueOf(request.getParameter("SimuInma"));
+                Simu.setSimuInma(dbSimuInma);
+                double dbSimuAple = Double.valueOf(request.getParameter("SimuAple"));
+                Simu.setSimuAple(dbSimuAple);
+                double dbSimuSalm = Double.valueOf(request.getParameter("SimuSalm"));
+                Simu.setSimuSalm(dbSimuSalm);
+                double dbSimuVlcr = Double.valueOf(request.getParameter("SimuVlcr"));
+                Simu.setSimuVlcr(dbSimuVlcr);
+                //Date dtSimuPlaz = (Date)fecha.parse(request.getParameter("SimuPlaz"));
+                //Simu.setSimuPlaz(dtSimuPlaz);
+                Simu.setSimuPlaz(0);
+                double dbSimuAsfi = Double.valueOf(request.getParameter("SimuAsfi"));
+                Simu.setSimuAsfi(dbSimuAsfi);
+                double dbSimuIva  = Double.valueOf(request.getParameter("SimuIva"));
+                Simu.setSimuIva(dbSimuIva);
+                double dbSimuPape = Double.valueOf(request.getParameter("SimuPape"));
+                Simu.setSimuPape(dbSimuPape);
+                double dbSimuGmf  = Double.valueOf(request.getParameter("SimuGmf"));
+                Simu.setSimuGmf(dbSimuGmf);
+                double dbSimuVlde = Double.valueOf(request.getParameter("SimuVlde"));
+                Simu.setSimuVlde(dbSimuVlde);
+                int inSimuOdli = Integer.valueOf(request.getParameter("SimuOdli"));
+                Simu.setSimuOdli(inSimuOdli);
+                Simu.setSimuEsta(request.getParameter("SimuEsta"));
+                double dbSimuTasa = Double.valueOf(request.getParameter("SimuTasa"));
+                Simu.setSimuTasa(dbSimuTasa);
                 CSimulador cSimu = new CSimulador(Simu);
-                
-                if(cSimu.SimuCrud(Accion))
+                if(cSimu.SimuCrud("Guardar"))
                 {
                     switch(Accion)
                     {
@@ -75,11 +132,8 @@ public class SSimulado extends HttpServlet {
                         case "Actualizar":
                             CMensajes.Mensaje(3, response);
                         break;
-                        /*case "Eliminar":
-                            CMensajes.Mensaje(4, response);
-                        break;
                         case "Consultar":
-                            Simu = cSimu.getUsuario();
+                            /*Simu = cSimu.getSimulado();
                             out.println("<table>");
                                 out.println("<tr>");
                                     out.println("<td> <label>Código de Usuario:</label> "+Usua.getUsuaCodi()+"</td>");
@@ -120,11 +174,11 @@ public class SSimulado extends HttpServlet {
                                 out.println("<tr>");
                                     out.println("<td> <label>Estado de Usuario:</label> "+Usua.getUsuaEsta()+"</td>");
                                 out.println("</tr>");
-                            out.println("</table>");
-                        break;*/
-                  //  }
-                //}/*
-                /*else
+                            out.println("</table>");*/
+                        break;
+                    }
+                }
+                else
                 {
                     if(Accion.equals("Consultar"))
                     {
@@ -134,7 +188,7 @@ public class SSimulado extends HttpServlet {
                     {
                         CMensajes.Mensaje(5, response);
                     }
-                }*/
+                }
             }
             catch(Exception x)
             {

@@ -4,6 +4,7 @@
     Author     : Juan y Karol
 --%>
 
+<%@page import="Objetos.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,8 +45,25 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
   </head>
     <body class="hold-transition skin-blue sidebar-mini">
+        <%!
+            static String Perfil = "x";
+        %>
+        <%
+            try
+            {
+                HttpSession sesion = request.getSession(true);
+                Usuarios Usua = new Usuarios();
+                Usua = (Usuarios)sesion.getAttribute("usuario");
+                Perfil = Usua.getUsuaPerf();
+            }
+            catch(Exception xx)
+            {
+                
+            }
+        %>
         <div class="wrapper">        
             <header class="main-header">
         <!-- Logo -->
@@ -125,6 +143,7 @@
                 <i class="fa fa-pie-chart"></i> <span>Indicadores</span>
               </a>
             </li>
+            <% if(Perfil != "ROT"){ %>
             <li class="active treeview">
               <a href="#">
                 <i class="fa fa-cogs"></i> <span>Sistema</span><i class="fa fa-angle-down pull-right"></i>
@@ -138,6 +157,7 @@
                 <li><a href="Entibanc.jsp"><i class="fa fa-bank"></i> Entidades Bancarias</a></li>
               </ul>
             </li>
+            <% } %>
             <li class="active treeview">
               <a href="#">
                 <i class="fa fa-bank"></i> <span>Módulo de Creditos</span>

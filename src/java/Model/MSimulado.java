@@ -14,8 +14,31 @@ public class MSimulado extends BaseDatos
     {
         try
         {
-            ryValores.add(Simu.getSimuCodi());
-            stSql = "pgSimulado.prInseSimu(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            ryValores.add(Simu.getSimuClie());
+            ryValores.add(Simu.getSimuFees());
+            ryValores.add(Simu.getSimuAdic());
+            ryValores.add(Simu.getSimuToin());
+            ryValores.add(Simu.getSimuAple());
+            ryValores.add(Simu.getSimuInma());
+            ryValores.add(Simu.getSimuSalm());
+            ryValores.add(Simu.getSimuEmba());
+            ryValores.add(Simu.getSimuPudc());
+            ryValores.add(Simu.getSimuPucn());
+            ryValores.add(Simu.getSimuTasa());
+            ryValores.add(Simu.getSimuPlaz());
+            ryValores.add(Simu.getSimuOdli());
+            ryValores.add(Simu.getSimuAsfi());
+            ryValores.add(Simu.getSimuIva());
+            ryValores.add(Simu.getSimuGmf());
+            ryValores.add(Simu.getSimuVlde());
+            ryValores.add(Simu.getSimuVlcr());
+            ryValores.add(Simu.getSimuEsta());
+            ryValores.add(Simu.getSimuUsua());
+            ryValores.add(Simu.getSimuFesi());
+            ryValores.add(Simu.getSimuUssi());
+            ryValores.add(Simu.getSimuPape());
+            
+            stSql = "pgSimulado.prInseSimu(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             parametros(0);
             return true;
         }
@@ -31,7 +54,30 @@ public class MSimulado extends BaseDatos
         try
         {
             ryValores.add(Simu.getSimuCodi());
-            stSql = "pgSimulado.prActuSimu(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            ryValores.add(Simu.getSimuClie());
+            ryValores.add(Simu.getSimuFees());
+            ryValores.add(Simu.getSimuAdic());
+            ryValores.add(Simu.getSimuToin());
+            ryValores.add(Simu.getSimuAple());
+            ryValores.add(Simu.getSimuInma());
+            ryValores.add(Simu.getSimuSalm());
+            ryValores.add(Simu.getSimuEmba());
+            ryValores.add(Simu.getSimuPudc());
+            ryValores.add(Simu.getSimuPucn());
+            ryValores.add(Simu.getSimuTasa());
+            ryValores.add(Simu.getSimuPlaz());
+            ryValores.add(Simu.getSimuOdli());
+            ryValores.add(Simu.getSimuAsfi());
+            ryValores.add(Simu.getSimuIva());
+            ryValores.add(Simu.getSimuGmf());
+            ryValores.add(Simu.getSimuVlde());
+            ryValores.add(Simu.getSimuVlcr());
+            ryValores.add(Simu.getSimuEsta());
+            ryValores.add(Simu.getSimuUsua());
+            ryValores.add(Simu.getSimuFesi());
+            ryValores.add(Simu.getSimuUssi());
+            ryValores.add(Simu.getSimuPape());
+            stSql = "pgSimulado.prActuSimu(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             parametros(0);
             return true;
         }
@@ -40,21 +86,21 @@ public class MSimulado extends BaseDatos
             return false;
         }
     }
-    /*
+    
     public Simulado consulta(Simulado Simu) throws Exception
     {
         try
         {
             conectar();
             cs = cn.prepareCall("BEGIN pgSimulado.prConsSimu(?,?); END;");
-            cs.setString(1, Simu.getSimuCodi());
+            cs.setInt(1, Simu.getSimuCodi());
             cs.registerOutParameter(2, OracleTypes.CURSOR);
             cs.execute();
             rs = (ResultSet)cs.getObject(2);
             if(rs.next())
             {
-                Simu.setSimuCodi(rs.getString(1));
-                Simu.setSimuDesc(rs.getString(2));
+                Simu.setSimuCodi(rs.getInt(1));
+                Simu.setSimuClie(rs.getInt(2));
             }
             return Simu;
         }
@@ -63,18 +109,4 @@ public class MSimulado extends BaseDatos
             throw x;
         }
     }
-    
-    /*public Simulado consulta(Simulado Simu) throws Exception
-    {
-        try
-        {
-            stSql = "<B> := pgSimulado.prConsSimu(?,<S>,<S>);";
-            parametros(1);
-            return Simu;
-        }
-        catch(Exception x)
-        {
-            throw x;
-        }
-    }*/
 }

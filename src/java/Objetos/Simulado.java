@@ -1,6 +1,6 @@
 package Objetos;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -13,27 +13,28 @@ public class Simulado
     private int    SimuCodi = 0;
     private int    SimuClie = 0;
     private Date   SimuFees = null;
-    private int    SimuAdic = 0;
-    private int    SimuToin = 0;
-    private int    SimuAple = 0;
-    private int    SimuInma = 0;
-    private int    SimuSalm = 0;
+    private double SimuAdic = 0;
+    private double    SimuToin = 0;
+    private double SimuAple = 0;
+    private double SimuInma = 0;
+    private double SimuSalm = 0;
     private String SimuEmba = "";
-    private int    SimuPudc = 0;
-    private int    SimuPucn = 0;
-    private int    SimuTasa = 0;
-    private Date   SimuPlaz = null;
-    private int    SimuOdli = 0;
-    private int    SimuAsfi = 0;
-    private int    SimuIva =  0;
-    private int    SimuGmf =  0;
-    private int    SimuVlde = 0;
-    private int    SimuVlcr = 0;
+    private double SimuPudc = 0;
+    private double SimuPucn = 0;
+    private double SimuTasa = 0;
+    //private Date   SimuPlaz = null;
+    private int  SimuPlaz = -1;
+    private int SimuOdli = -1;
+    private double SimuAsfi = 0;
+    private double SimuIva =  0;
+    private double SimuGmf =  0;
+    private double SimuVlde = 0;
+    private double SimuVlcr = 0;
     private String SimuEsta = "";
     private int    SimuUsua = 0;
     private Date   SimuFesi = null;
     private String SimuUssi = "";
-    private int    SimuPape = 0;
+    private double SimuPape = 0;
     
     public String getTabla()
     {
@@ -67,47 +68,47 @@ public class Simulado
         return SimuFees;
     }
     
-    public void setSimuAdic(int SimuAdic)
+    public void setSimuAdic(double SimuAdic)
     {
         this.SimuAdic = SimuAdic;
     }
-    public int getSimuAdic()
+    public double getSimuAdic()
     {
         return SimuAdic;
     }
     
-    public void setSimuToin(int SimuToin)
+    public void setSimuToin(double SimuToin)
     {
         this.SimuToin = SimuToin;
     }
-    public int getSimuToin()
+    public double getSimuToin()
     {
         return SimuToin;
     }
     
-    public void setSimuAple(int SimuAple)
+    public void setSimuAple(double SimuAple)
     {
         this.SimuAple = SimuAple;
     }
-    public int getSimuAple()
+    public double getSimuAple()
     {
         return SimuAple;
     }
     
-    public void setSimuInma(int SimuInma)
+    public void setSimuInma(double SimuInma)
     {
         this.SimuInma = SimuInma;
     }
-    public int getSimuInma()
+    public double getSimuInma()
     {
         return SimuInma;
     }
     
-    public void setSimuSalm(int SimuSalm)
+    public void setSimuSalm(double SimuSalm)
     {
         this.SimuSalm = SimuSalm;
     }
-    public int getSimuSalm()
+    public double getSimuSalm()
     {
         return SimuSalm;
     }
@@ -121,38 +122,38 @@ public class Simulado
         return SimuEmba;
     }
     
-    public void setSimuPudc(int SimuPudc)
+    public void setSimuPudc(double SimuPudc)
     {
         this.SimuPudc = SimuPudc;
     }
-    public int getSimuPudc()
+    public double getSimuPudc()
     {
         return SimuPudc;
     }
     
-    public void setSimuPucn(int SimuPucn)
+    public void setSimuPucn(double SimuPucn)
     {
         this.SimuPucn = SimuPucn;
     }
-    public int getSimuPucn()
+    public double getSimuPucn()
     {
         return SimuPucn;
     }
     
-    public void setSimuTasa(int SimuTasa)
+    public void setSimuTasa(double SimuTasa)
     {
         this.SimuTasa = SimuTasa;
     }
-    public int getSimuTasa()
+    public double getSimuTasa()
     {
         return SimuTasa;
     }
     
-    public void setSimuPlaz(Date SimuPlaz)
+    public void setSimuPlaz(int SimuPlaz)
     {
         this.SimuPlaz = SimuPlaz;
     }
-    public Date getSimuPlaz()
+    public int getSimuPlaz()
     {
         return SimuPlaz;
     }
@@ -166,47 +167,47 @@ public class Simulado
         return SimuOdli;
     }
     
-    public void setSimuAsfi(int SimuAsfi)
+    public void setSimuAsfi(double SimuAsfi)
     {
         this.SimuAsfi = SimuAsfi;
     }
-    public int getSimuAsfi()
+    public double getSimuAsfi()
     {
         return SimuAsfi;
     }
     
-    public void setSimuIva(int SimuIva)
+    public void setSimuIva(double SimuIva)
     {
         this.SimuIva = SimuIva;
     }
-    public int getSimuIva()
+    public double getSimuIva()
     {
         return SimuIva;
     }
     
-    public void setSimuGmf(int SimuGmf)
+    public void setSimuGmf(double SimuGmf)
     {
         this.SimuGmf = SimuGmf;
     }
-    public int getSimuGmf()
+    public double getSimuGmf()
     {
         return SimuGmf;
     }
     
-    public void setSimuVlde(int SimuVlde)
+    public void setSimuVlde(double SimuVlde)
     {
         this.SimuVlde = SimuVlde;
     }
-    public int getSimuVlde()
+    public double getSimuVlde()
     {
         return SimuVlde;
     }
     
-    public void setSimuVlcr(int SimuVlcr)
+    public void setSimuVlcr(double SimuVlcr)
     {
         this.SimuVlcr = SimuVlcr;
     }
-    public int getSimuVlcr()
+    public double getSimuVlcr()
     {
         return SimuVlcr;
     }
@@ -234,7 +235,7 @@ public class Simulado
         this.SimuFesi = SimuFesi;
     }
     
-    private Date getSimuFesi()
+    public Date getSimuFesi()
     {
         return SimuFesi;
     }
@@ -248,11 +249,11 @@ public class Simulado
         return SimuUssi;
     }
     
-    public void setSimuPape(int SimuPape)
+    public void setSimuPape(double SimuPape)
     {
         this.SimuPape = SimuPape;
     }
-    public int getSimuPape()
+    public double getSimuPape()
     {
         return SimuPape;
     }
