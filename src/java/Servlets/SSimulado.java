@@ -11,11 +11,14 @@ import Controlador.CUsuarios;
 import Objetos.Simulado;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
+
 
 /**
  *
@@ -41,11 +44,12 @@ public class SSimulado extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
            try
             {
-                //Simulado Simu = new Simulado();
-                //String Accion = request.getParameter("btSubmit");
-                  String data = request.getParameter("data_form");
+               //Simulado Simu = new Simulado();
+               //String Accion = request.getParameter("btSubmit");
+               String[] data = request.getParameterValues("data_form");
 
-                out.println(data);
+                  out.println("<p>"+data+"</p>");
+                  
                 /*if(inUsuaCodi != -1)
                 {
                     Simu.setUsuaCodi(inUsuaCodi);
@@ -171,6 +175,7 @@ public class SSimulado extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**

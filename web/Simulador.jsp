@@ -13,21 +13,21 @@
 {
 	$.ajax({
                     url: "SSimulado",
-                    type: "POST",
-                    dataType: 'json',
+                    type: "GET",
                     timeout: 30000,
-                    data: { data_frm: $(document.forms.fmSimulado).serializeArray()},
+                    data: { data_frm: JSON.stringify($(document.forms.fmSimulado).serializeArray())},
                     cache: false,
                     success: function (data) {
 						//console.log(data);
-						console.log(data);
+						$('#prueba').html(data);
 					},
-                    error: function (data) { console.log(data); }
-    });
+                    error: function (data) { console.log("malo"); }
+    });  
 }
     
 </script>
-<form id="fmSimulado" name="fmSimulado" method="post">
+<form id="fmSimulado" name="fmSimulado" method="get">
+    <div id="prueba"></div>
     <section class="content">
         <div class="row">
             <div class="col-md-6">
