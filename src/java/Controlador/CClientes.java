@@ -29,7 +29,7 @@ public class CClientes
             switch(Accion)
             {
                 case "Consultar":
-                    //Clie = mClie.consulta(Clie);
+                    Clie = mClie.consulta(Clie);
                     blRespuest = Clie.getClieNom1() != null;
                 break;
                 
@@ -51,5 +51,9 @@ public class CClientes
         {
             throw x;
         }
+    }
+    public Clientes getCliente()
+    {
+        return Clie;
     }
 }
