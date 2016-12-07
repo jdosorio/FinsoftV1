@@ -7,8 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:include page="header.jsp" />
+<script>
+    
+</script>
 <section class="content">
-    <form id="fmUsuarios" name="fmUsuarios" method="post">
+    <form id="fmSimulaciones" name="fmSimulaciones" method="post">
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-default">
@@ -23,11 +26,11 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Cedula: </label>
-                                    <input type="text" id="txUsuaCodi" name="txSimuCodi" class="form-control" placeholder="Código de Usuario">
+                                    <input type="text" id="txClieIden" name="txClieIden" class="form-control" placeholder="Código de Cliente">
                                 </div>
                                 <div class="form-group">
                                     <label>Nombre: </label>
-                                    <input type="text" id="txUsuaNom1" name="txSimuNom" class="form-control" placeholder="Primer Nombre de Usuario">
+                                    <input type="text" id="txClieNom1" name="txClieNom1" class="form-control" placeholder="Primer Nombre de Cliente">
                                 </div>
                                 
                             </div>
@@ -36,11 +39,11 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Celular: </label>
-                                    <input type="text" id="txUsuaTel1" name="txUsuaTel1" class="form-control" placeholder="Numero Celular del Usuario">
+                                    <input type="text" id="txClieTel1" name="txClieTel1" class="form-control" placeholder="Numero Celular del Cliente">
                                 </div>
                                 <div class="form-group">
                                     <label>Telefono Fijo: </label>
-                                    <input type="text" id="txUsuaTel2" name="txUsuaTel2" class="form-control" placeholder="Numero Fijo del Usuario">
+                                    <input type="text" id="txClieTel2" name="txClieTel2" class="form-control" placeholder="Numero Fijo del Cliente">
                                 </div>
                             </div>
                             <div class="col-md-5"></div>
@@ -66,5 +69,4 @@
     <br>
     <br>    
 </section>
-
 <jsp:include page="footer.jsp" />
