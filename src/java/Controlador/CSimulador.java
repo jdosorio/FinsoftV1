@@ -1,8 +1,9 @@
 package Controlador;
 
-
 import Model.MSimulado;
+import Objetos.Clientes;
 import Objetos.Simulado;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,6 +11,8 @@ import Objetos.Simulado;
  */
 public class CSimulador {
      Simulado Simu = null;
+     ArrayList<Simulado> Simus = new ArrayList<>();
+     boolean blRespuest;
     public CSimulador()
     {
         
@@ -21,7 +24,7 @@ public class CSimulador {
      
      public boolean SimuCrud(String Accion) throws Exception
     {
-        boolean blRespuest = false;
+        blRespuest = false;
         try
         {
             MSimulado mSimu = new MSimulado();
@@ -36,7 +39,6 @@ public class CSimulador {
                 case "Guardar":
                     blRespuest = mSimu.insertar(Simu);
                 break;
-                
             }
             return blRespuest;
         }
@@ -45,9 +47,34 @@ public class CSimulador {
             throw x;
         }
     }
+    
+    public boolean Listar(String Iden, String Nom1, String Tel1, String Tel2) throws Exception
+    {
+        try
+        {
+            Clientes Clie = new Clientes();
+            Clie.setClieIden(Iden);
+            Clie.setClieNom1(Nom1);
+            Clie.setClieTel1(Tel1);
+            Clie.setClieTel2(Tel2);
+            MSimulado mSimu = new MSimulado();
+            Simus = mSimu.consulta(Clie);
+            blRespuest = Simus.size() > 0;
+            return blRespuest;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
      
-      public Simulado getSimulado()
+    public Simulado getSimulado()
     {
         return Simu;
+    }
+    
+    public ArrayList<Simulado> getSimulados()
+    {
+        return Simus;
     }
 }

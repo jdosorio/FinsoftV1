@@ -1,5 +1,7 @@
 package Servlets;
 
+import Controlador.CMensajes;
+import Controlador.CSimulador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,11 +39,24 @@ public class SSimulaciones extends HttpServlet {
                       "        ");
            try
            {
-               
+               CSimulador cSimu = new CSimulador();
+               if(cSimu.Listar(request.getParameter("txClieIden"),request.getParameter("txClieNom1"),
+                               request.getParameter("txClieTel1"),request.getParameter("txClieTel2")))
+               {
+                   out.println("<table border='1'>");
+                   for (int i = 0; i < cSimu.getSimulados().size(); i++)
+                   {
+                       out.println("<tr>");
+                          out.println("<td>  "+ cSimu.getSimulados().get(i).getSimuCodi() +"  </td>");
+                          out.println("<td>  "+ cSimu.getSimulados().get(i).getSimuAdic()+"  </td>");
+                       out.println("</tr>");
+                   }
+                   out.println("</table>");
+               }
            }
            catch(Exception e)
            {
-               
+               CMensajes.Mensaje(e.toString(), response);
            }
         }
     }

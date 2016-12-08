@@ -8,7 +8,28 @@
 <!DOCTYPE html>
 <jsp:include page="header.jsp" />
 <script>
-    
+    $(document).ready(function()
+            {
+            	$('#btConsultar').click(function(event)
+                {
+                    var Iden = $('#txClieIden').val();
+                    var Nom1 = $('#txClieNom1').val();
+                    var Tel1 = $('#txClieTel1').val();
+                    var Tel2 = $('#txClieTel2').val();
+                    
+                    $.post('SSimulaciones',
+                    {
+                        txClieIden : Iden,
+                        txClieNom1 : Nom1,
+                        txClieTel1 : Tel1,
+                        txClieTel2 : Tel2
+			},
+                    function(responseText)
+                    {
+                        $('#tabla').html(responseText);
+                    });
+		});
+            });
 </script>
 <section class="content">
     <form id="fmSimulaciones" name="fmSimulaciones" method="post">
@@ -26,7 +47,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Cedula: </label>
-                                    <input type="text" id="txClieIden" name="txClieIden" class="form-control" placeholder="Código de Cliente">
+                                    <input type="text" id="txClieIden" name="txClieIden" class="form-control" placeholder="Identificación de Cliente">
                                 </div>
                                 <div class="form-group">
                                     <label>Nombre: </label>
@@ -34,7 +55,6 @@
                                 </div>
                                 
                             </div>
-                        
                         
                             <div class="col-md-6">
                                 <div class="form-group">
