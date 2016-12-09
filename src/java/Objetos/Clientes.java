@@ -23,7 +23,7 @@ public class Clientes
     private String ClieTel2 = "";
     private String ClieCorr = "";
     private String ClieDire = "";
-    private int    ClieSaba = 0;
+    private Double ClieSaba = 0.0;
     private String ClieEsta = "";
     
     public String getTabla()
@@ -130,11 +130,11 @@ public class Clientes
         return ClieDire;
     }
     
-    public void setClieSaba(int ClieSaba)
+    public void setClieSaba(Double ClieSaba)
     {
         this.ClieSaba = ClieSaba;
     }
-    public int getClieSaba()
+    public Double getClieSaba()
     {
         return ClieSaba;
     }

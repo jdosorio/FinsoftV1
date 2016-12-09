@@ -2,6 +2,7 @@ package Model;
 
 import Objetos.Clientes;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import oracle.jdbc.OracleTypes;
 
 /**
@@ -102,10 +103,51 @@ public class MClientes extends BaseDatos
                 Clie.setClieTel2(rs.getString(9));
                 Clie.setClieCorr(rs.getString(10));
                 Clie.setClieDire(rs.getString(11));
-                Clie.setClieSaba(rs.getInt(12));
+                Clie.setClieSaba(rs.getDouble(12));
                 Clie.setClieEsta(rs.getString(13));
             }
             return Clie;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
+    
+    public String[][] consultaAll(Clientes Clie, Double dbSalario2) throws Exception
+    {
+        String[][] Matriz;
+        int filas = 0;
+        int columnas = 0;
+        int i = 0;
+        try
+        {
+            conectar();
+            /*
+                Se hizo de esta forma por funcionalidad del ResultSet
+            */
+            stSql = "SELECT *" +
+                    "  FROM CLIENTES" +
+                    " WHERE ClieEsta LIKE NVL('"+Clie.getClieEsta()+"','%')" +
+                    "   AND (('"+Clie.getClieSaba()+"' IS NOT NULL AND '"+dbSalario2+"' IS NOT NULL AND ClieSaba >= '"+Clie.getClieSaba()+"' AND ClieSaba <= '"+dbSalario2+"')" +
+                    "         OR ('"+Clie.getClieSaba()+"' IS NULL AND '"+dbSalario2+"' IS NULL))";
+            st = cn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            rs = st.executeQuery(stSql);
+            rs.last();
+            filas = rs.getRow();
+            rs.beforeFirst();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            Matriz = new String[filas][columnas];
+            while(rs.next() && i < filas)
+            {
+                for(int j=0;j<columnas;j++)
+                {
+                    Matriz[i][j] = rs.getString(j+1);
+                }
+                i++;                    
+            }
+            return Matriz;
         }
         catch(Exception x)
         {

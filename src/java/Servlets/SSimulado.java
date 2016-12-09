@@ -55,8 +55,8 @@ public class SSimulado extends HttpServlet {
                 Clie.setClieTel2(request.getParameter("txClieTel1"));
                 Clie.setClieDire(request.getParameter("txClieDire"));
                 Clie.setClieCorr(request.getParameter("txClieCorr"));
-                int inClieSaba = Integer.parseInt(request.getParameter("txClieSaba"));
-                Clie.setClieSaba(inClieSaba);
+                Double dbClieSaba = Double.valueOf(request.getParameter("txClieSaba"));
+                Clie.setClieSaba(dbClieSaba);
                 String Accion = "Guardar";
                 CClientes cClie = new CClientes(Clie);
                 

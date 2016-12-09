@@ -1,11 +1,10 @@
 package Servlets;
 
-import Controlador.CMensajes;
 import Controlador.CClientes;
+import Controlador.CMensajes;
 import Objetos.Clientes;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author FELIPE
  */
-@WebServlet(name = "SClientes", urlPatterns = {"/SClientes"})
-public class SClientes extends HttpServlet {
+@WebServlet(name = "SRClientes", urlPatterns = {"/SRClientes"})
+public class SRClientes extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,32 +34,18 @@ public class SClientes extends HttpServlet {
             try
             {
                 Clientes Clie = new Clientes();
-                int inClieCodi = Integer.parseInt(request.getParameter("txClieCodi"));
-                Clie.setClieCodi(inClieCodi);
-                Clie.setClieNom1(request.getParameter("txClieNom1"));
-                Clie.setClieNom2(request.getParameter("txClieNom2"));
-                Clie.setClieApe1(request.getParameter("txClieApe1"));
-                Clie.setClieApe2(request.getParameter("txClieApe2"));
-                Clie.setClieIden(request.getParameter("txClieIden"));
-                Date dtClieFena = Date.valueOf(request.getParameter("txClieFena"));
-                Clie.setClieFena((dtClieFena));
-                Clie.setClieTel1(request.getParameter("txClieTel1"));
-                Clie.setClieTel2(request.getParameter("txClieTel2"));
-                Clie.setClieCorr(request.getParameter("txClieCorr"));
-                Clie.setClieDire(request.getParameter("txClieDire"));
-                Double dbClieSaba = Double.valueOf(request.getParameter("txClieSaba"));
-                Clie.setClieSaba(dbClieSaba);
                 Clie.setClieEsta(request.getParameter("txClieEsta"));
-                
+                Double dbSalario1 = Double.valueOf(request.getParameter("txClieSaba1"));
+                Clie.setClieSaba(dbSalario1);
                 CClientes cClie = new CClientes(Clie);
-                
-                if(cClie.ClieCrud(request.getParameter("btSubmit")))
+                Double dbSalario2 = Double.valueOf(request.getParameter("txClieSaba2"));
+                if(cClie.GeneRepo(dbSalario2))
                 {
-                    CMensajes.Mensaje(1, response);
+                    CMensajes.Mensaje("Archivo Generado.", response);
                 }
                 else
                 {
-                    CMensajes.Mensaje(5, response);
+                    CMensajes.Mensaje("No hay información para generar el reporte.", response);
                 }
             }
             catch(Exception x)

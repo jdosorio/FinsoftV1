@@ -125,10 +125,9 @@ public class MUsuarios extends BaseDatos
         try
         {
             conectar();
-            /*cs = cn.prepareCall("BEGIN pgUsuarios.prConsUsua(?,?,?); END;",ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            cs.setString(1, Usua.getUsuaEsta());
-            cs.setString(2, Usua.getUsuaPerf());
-            cs.registerOutParameter(3, OracleTypes.CURSOR);*/
+            /*
+                Se hizo de esta forma por funcionalidad del ResultSet
+            */
             stSql = "SELECT *" +
                     "  FROM USUARIOS" +
                     " WHERE UsuaEsta LIKE NVL('"+Usua.getUsuaEsta()+"','%')" +

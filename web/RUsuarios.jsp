@@ -65,6 +65,6 @@
         </div>
     </form>
     <br>
-    <br>    
+    <br>
 </section>
 <jsp:include page="footer.jsp" />
