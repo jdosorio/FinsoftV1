@@ -17,6 +17,15 @@
                     var Salario1 = $('#txClieSaba1').val();
                     var Salario2 = $('#txClieSaba2').val();
                     
+                    if(Salario1.length == 0)
+                    {
+                        Salario1 = -1;
+                    }
+                    if(Salario2.length == 0)
+                    {
+                        Salario2 = -1;
+                    }
+                    
                     $.post('SRClientes',
                     {
                         txClieEsta : Estado,

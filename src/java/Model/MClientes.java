@@ -129,8 +129,8 @@ public class MClientes extends BaseDatos
             stSql = "SELECT *" +
                     "  FROM CLIENTES" +
                     " WHERE ClieEsta LIKE NVL('"+Clie.getClieEsta()+"','%')" +
-                    "   AND (('"+Clie.getClieSaba()+"' IS NOT NULL AND '"+dbSalario2+"' IS NOT NULL AND ClieSaba >= '"+Clie.getClieSaba()+"' AND ClieSaba <= '"+dbSalario2+"')" +
-                    "         OR ('"+Clie.getClieSaba()+"' IS NULL AND '"+dbSalario2+"' IS NULL))";
+                    "   AND (("+Clie.getClieSaba()+" != -1 AND "+dbSalario2+" != -1 AND ClieSaba >= "+Clie.getClieSaba()+" AND ClieSaba <= "+dbSalario2+")" +
+                    "         OR ("+Clie.getClieSaba()+" = -1 AND "+dbSalario2+" = -1))";
             st = cn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             rs = st.executeQuery(stSql);
             rs.last();
