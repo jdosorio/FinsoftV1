@@ -1,8 +1,8 @@
 package Servlets;
 
-import Controlador.CMensajes;
-import Controlador.CUsuarios;
-import Objetos.Usuarios;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,14 +10,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  *
  * @author FELIPE
  */
-@WebServlet(name = "Slogin", urlPatterns = {"/Slogin"})
-public class Slogin extends HttpServlet {
+@WebServlet(name = "SRUsuarios", urlPatterns = {"/SRUsuarios"})
+public class SRUsuarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,34 +38,34 @@ public class Slogin extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             try
             {
-                Usuarios Usua = new Usuarios();
-                CUsuarios cUsua = new CUsuarios();
-                Usua = cUsua.ValiSesi(request.getParameter("txUsuaNick"),
-                                      request.getParameter("txUsuaPass"),
-                                      response);
-                if(Usua.getUsuaNick().equals(""))
+                String rutaArchivo = System.getProperty("user.home")+"/ejemploExcelJava.xls";
+                File archivoXLS = new File(rutaArchivo);
+                Workbook libro = new HSSFWorkbook();
+                FileOutputStream archivo = new FileOutputStream(archivoXLS);
+                Sheet hoja = libro.createSheet("Mi hoja de trabajo 1");
+                for(int f=0;f<10;f++)
                 {
-                    CMensajes.Mensaje(6, response);//Usuario no existe
-                    response.sendRedirect("login.jsp");
-                }
-                else
-                {
-                    if(Usua.getUsuaNick() != "" && Usua.getUsuaNom1().equals("N"))
+                    Row fila = hoja.createRow(f);
+                    for(int c=0;c<5;c++)
                     {
-                        CMensajes.Mensaje(7, response);//Clave incorrecta
-                        response.sendRedirect("login.jsp");
-                    }
-                    else
-                    {
-                        HttpSession sesion = (HttpSession) request.getSession();
-                        sesion.setAttribute("usuario", Usua);
-                        response.sendRedirect("view.jsp");
+                        Cell celda = fila.createCell(c);
+                        if(f==0)
+                        {
+                            celda.setCellValue("Encabezado #"+c);
+                        }
+                        else
+                        {
+                            celda.setCellValue("Valor celda "+c+","+f);
+                        }
                     }
                 }
+                libro.write(archivo);
+                archivo.close();
+                Desktop.getDesktop().open(archivoXLS);
             }
             catch(Exception x)
             {
-                CMensajes.Mensaje(x.toString(), response);
+                
             }
         }
     }

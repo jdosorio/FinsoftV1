@@ -3,7 +3,8 @@
     Created on : 19/11/2016, 09:05:30 PM
     Author     : Juan y Karol
 --%>
-
+<%@page import="Controlador.CMensajes"%>
+<%-- @page import="Objetos.Mensajes" --%>
 <%@page import="Objetos.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,19 +50,17 @@
   </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <%!
-            static String Perfil = "x";
+            static Usuarios Usua = null;
         %>
         <%
             try
             {
                 HttpSession sesion = request.getSession(true);
-                Usuarios Usua = new Usuarios();
                 Usua = (Usuarios)sesion.getAttribute("usuario");
-                Perfil = Usua.getUsuaPerf();
             }
-            catch(Exception xx)
+            catch(Exception x)
             {
-                
+                CMensajes.Mensaje(x.toString(), response);
             }
         %>
         <div class="wrapper">        
@@ -91,14 +90,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs"><% out.println(Usua.getUsuaNom1()+" "+Usua.getUsuaApe1()); %></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
-                      Alexander Pierce - Web Developer
+                      <% out.println(Usua.getUsuaNom1()+" "+Usua.getUsuaApe1()); %> - Web Developer
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
@@ -128,7 +127,7 @@
               <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p><% out.println(Usua.getUsuaNom1()+" "+Usua.getUsuaApe1()); %></p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -143,7 +142,6 @@
                 <i class="fa fa-pie-chart"></i> <span>Indicadores</span>
               </a>
             </li>
-            <% if(Perfil != "ROT"){ %>
             <li class="active treeview">
               <a href="#">
                 <i class="fa fa-cogs"></i> <span>Sistema</span><i class="fa fa-angle-down pull-right"></i>
@@ -151,13 +149,14 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="Usuarios.jsp"><i class="fa fa-user"></i> Gestión Usuarios</a></li>
                 <li><a href="Paraoper.jsp"><i class="fa fa-wrench"></i> Parámetros Generales</a></li>
-                <li><a href="Estados.jsp"><i class="fa fa-wrench"></i> Estados del Sistema</a></li>
-                <li><a href="Perfiles.jsp"><i class="fa fa-wrench"></i> Perfiles del Sistema</a></li>
-                <li><a href="Modulos.jsp"><i class="fa fa-wrench"></i> Módulos del Sistema</a></li>
+                <% if(Usua.getUsuaPerf() == "ROT"){ %>
+                    <li><a href="Estados.jsp"><i class="fa fa-wrench"></i> Estados del Sistema</a></li>
+                    <li><a href="Perfiles.jsp"><i class="fa fa-wrench"></i> Perfiles del Sistema</a></li>
+                    <li><a href="Modulos.jsp"><i class="fa fa-wrench"></i> Módulos del Sistema</a></li>
+                <% } %>
                 <li><a href="Entibanc.jsp"><i class="fa fa-bank"></i> Entidades Bancarias</a></li>
               </ul>
             </li>
-            <% } %>
             <li class="active treeview">
               <a href="#">
                 <i class="fa fa-bank"></i> <span>Módulo de Creditos</span>
@@ -171,6 +170,10 @@
               <a href="#">
                 <i class="fa fa-file-pdf-o"></i> <span>Módulo Reportes</span>
               </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="RUsuarios.jsp"><i class="fa fa-user"></i> Usuarios del Sistema</a></li>
+                <li><a href="RClientes.jsp"><i class="fa fa-wrench"></i> Clientes del Sistema</a></li>
+              </ul>
             </li>
         </section>
         <!-- /.sidebar -->
