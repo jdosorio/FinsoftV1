@@ -14,11 +14,12 @@
             	$('#btGenerar').click(function(event)
                 {
                     var Estado = $('#txUsuaEsta').val();
-                    var x = $('#txUsua').val();
+                    var Perfil = $('#txUsuaPerf').val();
                     
                     $.post('SRUsuarios',
                     {
-                        txUsuaEsta : Estado
+                        txUsuaEsta : Estado,
+                        txUsuaPerf : Perfil
 			},
                     function(responseText)
                     {
@@ -41,12 +42,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Estado: </label>
-                                    <input type="text" id="txUsuaEsta" name="txUsuaEsta" required="required" class="form-control" placeholder="Código del Modulo">
+                                    <label>Estado de Usuarios: </label>
+                                    <input type="text" id="txUsuaEsta" name="txUsuaEsta" required="required" class="form-control" placeholder="Filtro Estado">
                                 </div>
                                 <div class="form-group">
-                                    <label>Descripción: </label>
-                                    <input type="text" id="txUsua" name="txUsua" class="form-control" placeholder="Descripción del Modulo">
+                                    <label>Perfil: </label>
+                                    <input type="text" id="txUsuaPerf" name="txUsuaPerf" class="form-control" placeholder="Filtro Perfil">
                                 </div>
                             </div>
                         </div>
@@ -54,7 +55,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div id="tabla" class="table table-bordered"></div>
+                <div id="tabla"></div>
             </div>
         </div>
         <div class="row">

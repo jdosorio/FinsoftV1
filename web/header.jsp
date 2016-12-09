@@ -149,7 +149,7 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="Usuarios.jsp"><i class="fa fa-user"></i> Gestión Usuarios</a></li>
                 <li><a href="Paraoper.jsp"><i class="fa fa-wrench"></i> Parámetros Generales</a></li>
-                <% if(Usua.getUsuaPerf() == "ROT"){ %>
+                <% if(Usua.getUsuaPerf().contains("ROT")){ %>
                     <li><a href="Estados.jsp"><i class="fa fa-wrench"></i> Estados del Sistema</a></li>
                     <li><a href="Perfiles.jsp"><i class="fa fa-wrench"></i> Perfiles del Sistema</a></li>
                     <li><a href="Modulos.jsp"><i class="fa fa-wrench"></i> Módulos del Sistema</a></li>

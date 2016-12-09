@@ -2,6 +2,7 @@ package Model;
 
 import Objetos.Usuarios;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import oracle.jdbc.OracleTypes;
 
 /**
@@ -108,6 +109,50 @@ public class MUsuarios extends BaseDatos
                 Usua.setUsuaEsta(rs.getString(13));
             }
             return Usua;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
+    
+    public String[][] consultaAll(Usuarios Usua) throws Exception
+    {
+        String[][] Matriz;
+        int filas = 0;
+        int columnas = 0;
+        int i = 0;
+        try
+        {
+            conectar();
+            /*cs = cn.prepareCall("BEGIN pgUsuarios.prConsUsua(?,?,?); END;",ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            cs.setString(1, Usua.getUsuaEsta());
+            cs.setString(2, Usua.getUsuaPerf());
+            cs.registerOutParameter(3, OracleTypes.CURSOR);*/
+            stSql = "SELECT *" +
+                    "  FROM USUARIOS" +
+                    " WHERE UsuaEsta LIKE NVL('"+Usua.getUsuaEsta()+"','%')" +
+                    "   AND UsuaPerf LIKE NVL('"+Usua.getUsuaPerf()+"','%')";
+            st = cn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            
+            //cs.execute();
+            //rs = (ResultSet)cs.getObject(3);
+            rs = st.executeQuery(stSql);
+            rs.last();
+            filas = rs.getRow();
+            rs.beforeFirst();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            Matriz = new String[filas][columnas];
+            while(rs.next() && i < filas)
+            {
+                for(int j=0;j<columnas;j++)
+                {
+                    Matriz[i][j] = rs.getString(j+1);
+                }
+                i++;                    
+            }
+            return Matriz;
         }
         catch(Exception x)
         {

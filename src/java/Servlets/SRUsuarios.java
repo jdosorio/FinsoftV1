@@ -1,8 +1,8 @@
 package Servlets;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.FileOutputStream;
+import Controlador.CMensajes;
+import Controlador.CUsuarios;
+import Objetos.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,12 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-
 /**
  *
  * @author FELIPE
@@ -38,34 +32,23 @@ public class SRUsuarios extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             try
             {
-                String rutaArchivo = System.getProperty("user.home")+"/ejemploExcelJava.xls";
-                File archivoXLS = new File(rutaArchivo);
-                Workbook libro = new HSSFWorkbook();
-                FileOutputStream archivo = new FileOutputStream(archivoXLS);
-                Sheet hoja = libro.createSheet("Mi hoja de trabajo 1");
-                for(int f=0;f<10;f++)
+                Usuarios Usua = new Usuarios();
+                Usua.setUsuaEsta(request.getParameter("txUsuaEsta"));
+                Usua.setUsuaPerf(request.getParameter("txUsuaPerf"));
+                CUsuarios cUsua = new CUsuarios(Usua);
+                
+                if(cUsua.GeneRepo())
                 {
-                    Row fila = hoja.createRow(f);
-                    for(int c=0;c<5;c++)
-                    {
-                        Cell celda = fila.createCell(c);
-                        if(f==0)
-                        {
-                            celda.setCellValue("Encabezado #"+c);
-                        }
-                        else
-                        {
-                            celda.setCellValue("Valor celda "+c+","+f);
-                        }
-                    }
+                    CMensajes.Mensaje("Archivo Generado.", response);
                 }
-                libro.write(archivo);
-                archivo.close();
-                Desktop.getDesktop().open(archivoXLS);
+                else
+                {
+                    CMensajes.Mensaje("No hay información para generar el reporte.", response);
+                }
             }
             catch(Exception x)
             {
-                
+                CMensajes.Mensaje(x.toString(), response);
             }
         }
     }
