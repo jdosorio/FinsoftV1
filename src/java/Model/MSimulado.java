@@ -33,10 +33,8 @@ public class MSimulado extends BaseDatos
             ryValores.add(Simu.getSimuVlde());
             ryValores.add(Simu.getSimuVlcr());
             ryValores.add(Simu.getSimuEsta());
-            //ryValores.add(Simu.getSimuUsua());
-            ryValores.add(1);
-            //ryValores.add(Simu.getSimuUssi());
-            ryValores.add("ROOT");
+            ryValores.add(Simu.getSimuUsua());
+            ryValores.add(Simu.getSimuUssi());
             ryValores.add(Simu.getSimuPape());
             ryValores.add(Simu.getSimuPlaz());
             
