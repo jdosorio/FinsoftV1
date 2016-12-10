@@ -11,7 +11,7 @@
  $(document).ready(function () {        
    $.ajax({
     url: "SIndicadores",
-    data: {},
+    data: {txClieIden: null, txClieNom1:null, txClieTel1: null, txClieTel2: null},
     type: "POST",
     timeout: 30000,
     cache: false,

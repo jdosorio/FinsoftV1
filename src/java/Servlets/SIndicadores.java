@@ -5,6 +5,8 @@
  */
 package Servlets;
 
+import Controlador.CMensajes;
+import Controlador.CSimulador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,15 +36,27 @@ public class SIndicadores extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SIndicadores</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SIndicadores at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            try
+           {
+               CSimulador cSimu = new CSimulador();
+               if(cSimu.Listar(request.getParameter("txClieIden"),request.getParameter("txClieNom1"),
+                               request.getParameter("txClieTel1"),request.getParameter("txClieTel2")))
+               {
+                   out.println("<table border='1'>");
+                   for (int i = 0; i < cSimu.getSimulados().size(); i++)
+                   {
+                       out.println("<tr>");
+                          out.println("<td>  "+ cSimu.getSimulados().get(i).getSimuCodi() +"  </td>");
+                          out.println("<td>  "+ cSimu.getSimulados().get(i).getSimuAdic()+"  </td>");
+                       out.println("</tr>");
+                   }
+                   out.println("</table>");
+               }
+           }
+           catch(Exception e)
+           {
+               CMensajes.Mensaje(e.toString(), response);
+           }
         }
     }
 
