@@ -13,6 +13,8 @@ import Objetos.Clientes;
 import Controlador.CClientes;
 import Controlador.CMensajes;
 import Controlador.CSimulador;
+import Objetos.Usuarios;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -72,6 +74,11 @@ public class SSimulado extends HttpServlet {
                         }
                     }
                 }
+                HttpSession sesion = request.getSession(true);
+                Usuarios Usua = (Usuarios)sesion.getAttribute("usuario");
+                Simu.setSimuUsua(Usua.getUsuaCodi());
+                Simu.setSimuUssi(Usua.getUsuaNick());
+                
                 String stSimuTico = request.getParameter("SimuTico");
                 String stSiobObse = request.getParameter("SiobObse");
                 double dbSimuToeg = Double.valueOf(request.getParameter("SimuToeg"));
