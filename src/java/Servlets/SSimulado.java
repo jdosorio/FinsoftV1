@@ -8,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import Objetos.Simulado;
 import Objetos.Clientes;
 import Controlador.CClientes;
@@ -42,21 +40,7 @@ public class SSimulado extends HttpServlet {
             {
                 Simulado Simu = new Simulado();
                 Clientes Clie = new Clientes();
-                SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
-                
                 Clie.setClieIden(request.getParameter("txClieIden"));
-                Clie.setClieNom1(request.getParameter("txClieNom1"));
-                Clie.setClieNom2(request.getParameter("txClieNom2"));
-                Clie.setClieApe1(request.getParameter("txClieApe1"));
-                Clie.setClieApe2(request.getParameter("txClieApe2"));
-                Date dtClieFena = (Date)fecha.parse(request.getParameter("txClieFena"));
-                Clie.setClieFena(dtClieFena);
-                Clie.setClieTel1(request.getParameter("txClieTel1"));
-                Clie.setClieTel2(request.getParameter("txClieTel1"));
-                Clie.setClieDire(request.getParameter("txClieDire"));
-                Clie.setClieCorr(request.getParameter("txClieCorr"));
-                Double dbClieSaba = Double.valueOf(request.getParameter("txClieSaba"));
-                Clie.setClieSaba(dbClieSaba);
                 String Accion = "Guardar";
                 CClientes cClie = new CClientes(Clie);
                 
@@ -66,9 +50,22 @@ public class SSimulado extends HttpServlet {
                 }
                 else
                 {
+                    Clie.setClieIden(request.getParameter("txClieIden"));
+                    Clie.setClieNom1(request.getParameter("txClieNom1"));
+                    Clie.setClieNom2(request.getParameter("txClieNom2"));
+                    Clie.setClieApe1(request.getParameter("txClieApe1"));
+                    Clie.setClieApe2(request.getParameter("txClieApe2"));
+                    Clie.setClieFena(request.getParameter("txClieFena"));
+                    Clie.setClieTel1(request.getParameter("txClieTel1"));
+                    Clie.setClieTel2(request.getParameter("txClieTel1"));
+                    Clie.setClieDire(request.getParameter("txClieDire"));
+                    Clie.setClieCorr(request.getParameter("txClieCorr"));
+                    Clie.setClieEsta("act");
+                    Double dbClieSaba = Double.valueOf(request.getParameter("txClieSaba"));
+                    Clie.setClieSaba(dbClieSaba);
+                    cClie = new CClientes(Clie);
                     if(cClie.ClieCrud("Guardar"))
                     {
-                        cClie = new CClientes(Clie);
                         if(cClie.ClieCrud("Consultar"))
                         {
                             Clie = cClie.getCliente();
@@ -98,9 +95,8 @@ public class SSimulado extends HttpServlet {
                 Simu.setSimuSalm(dbSimuSalm);
                 double dbSimuVlcr = Double.valueOf(request.getParameter("SimuVlcr"));
                 Simu.setSimuVlcr(dbSimuVlcr);
-                //Date dtSimuPlaz = (Date)fecha.parse(request.getParameter("SimuPlaz"));
-                //Simu.setSimuPlaz(dtSimuPlaz);
-                Simu.setSimuPlaz(0);
+                int inSimuPlaz = Integer.valueOf(request.getParameter("SimuPlaz"));
+                Simu.setSimuPlaz(inSimuPlaz);
                 double dbSimuAsfi = Double.valueOf(request.getParameter("SimuAsfi"));
                 Simu.setSimuAsfi(dbSimuAsfi);
                 double dbSimuIva  = Double.valueOf(request.getParameter("SimuIva"));

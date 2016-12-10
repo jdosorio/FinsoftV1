@@ -1,9 +1,5 @@
 package Objetos;
 
-import java.util.Date;
-
-
-
 /**
  *
  * @author FELIPE
@@ -18,7 +14,7 @@ public class Clientes
     private String ClieApe1 = "";
     private String ClieApe2 = "";
     private String ClieIden = "";
-    private Date   ClieFena = null;
+    private String ClieFena = "";
     private String ClieTel1 = "";
     private String ClieTel2 = "";
     private String ClieCorr = "";
@@ -85,11 +81,11 @@ public class Clientes
         return ClieIden;
     }
     
-    public void setClieFena(Date ClieFena)
+    public void setClieFena(String ClieFena)
     {
         this.ClieFena = ClieFena;
     }
-    public Date getClieFena()
+    public String getClieFena()
     {
         return ClieFena;
     }
