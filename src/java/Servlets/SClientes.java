@@ -5,7 +5,6 @@ import Controlador.CClientes;
 import Objetos.Clientes;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,8 +41,7 @@ public class SClientes extends HttpServlet {
                 Clie.setClieApe1(request.getParameter("txClieApe1"));
                 Clie.setClieApe2(request.getParameter("txClieApe2"));
                 Clie.setClieIden(request.getParameter("txClieIden"));
-                Date dtClieFena = Date.valueOf(request.getParameter("txClieFena"));
-                Clie.setClieFena((dtClieFena));
+                Clie.setClieFena(request.getParameter("txClieFena"));
                 Clie.setClieTel1(request.getParameter("txClieTel1"));
                 Clie.setClieTel2(request.getParameter("txClieTel2"));
                 Clie.setClieCorr(request.getParameter("txClieCorr"));

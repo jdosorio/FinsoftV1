@@ -38,7 +38,7 @@ public class CClientes
             {
                 case "Consultar":
                     Clie = mClie.consulta(Clie);
-                    blRespuest = Clie.getClieNom1() != null;
+                    blRespuest = Clie != null;
                 break;
                 
                 case "Actualizar":

@@ -17,7 +17,6 @@ public class MSimulado extends BaseDatos
         try
         {
             ryValores.add(Simu.getSimuClie());
-            ryValores.add(Simu.getSimuFees());
             ryValores.add(Simu.getSimuAdic());
             ryValores.add(Simu.getSimuToin());
             ryValores.add(Simu.getSimuAple());
@@ -27,7 +26,6 @@ public class MSimulado extends BaseDatos
             ryValores.add(Simu.getSimuPudc());
             ryValores.add(Simu.getSimuPucn());
             ryValores.add(Simu.getSimuTasa());
-            ryValores.add(Simu.getSimuPlaz());
             ryValores.add(Simu.getSimuOdli());
             ryValores.add(Simu.getSimuAsfi());
             ryValores.add(Simu.getSimuIva());
@@ -35,12 +33,14 @@ public class MSimulado extends BaseDatos
             ryValores.add(Simu.getSimuVlde());
             ryValores.add(Simu.getSimuVlcr());
             ryValores.add(Simu.getSimuEsta());
-            ryValores.add(Simu.getSimuUsua());
-            ryValores.add(Simu.getSimuFesi());
-            ryValores.add(Simu.getSimuUssi());
+            //ryValores.add(Simu.getSimuUsua());
+            ryValores.add(1);
+            //ryValores.add(Simu.getSimuUssi());
+            ryValores.add("ROOT");
             ryValores.add(Simu.getSimuPape());
+            ryValores.add(Simu.getSimuPlaz());
             
-            stSql = "pgSimulado.prInseSimu(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            stSql = "pgSimulado.prInseSimu(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             parametros(0);
             return true;
         }

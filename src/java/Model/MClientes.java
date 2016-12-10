@@ -98,13 +98,17 @@ public class MClientes extends BaseDatos
                 Clie.setClieApe1(rs.getString(4));
                 Clie.setClieApe2(rs.getString(5));
                 Clie.setClieIden(rs.getString(6));
-                Clie.setClieFena(rs.getDate(7));
+                Clie.setClieFena(rs.getString(7));
                 Clie.setClieTel1(rs.getString(8));
                 Clie.setClieTel2(rs.getString(9));
                 Clie.setClieCorr(rs.getString(10));
                 Clie.setClieDire(rs.getString(11));
                 Clie.setClieSaba(rs.getDouble(12));
                 Clie.setClieEsta(rs.getString(13));
+            }
+            else
+            {
+                Clie = null;
             }
             return Clie;
         }

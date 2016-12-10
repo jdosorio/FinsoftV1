@@ -162,8 +162,9 @@
                 <i class="fa fa-bank"></i> <span>Módulo de Creditos</span>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="Clientes.jsp"><i class="fa fa-user"></i> Clientes</a></li>
+                <!--<li class="active"><a href="Clientes.jsp"><i class="fa fa-user"></i> Clientes</a></li>-->
                 <li><a href="Compcacl.jsp"><i class="fa fa-pie-chart"></i> Compra de Cartera</a></li>
+                <li><a href="Simulador.jsp"><i class="fa fa-pie-chart"></i> Simulaciones</a></li>
               </ul>
             </li>
             <li class="active treeview">
