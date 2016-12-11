@@ -85,4 +85,21 @@ public class MParaoper extends BaseDatos
             throw x;
         }
     }
+    
+    public String PaopValo(String stCodigo) throws Exception
+    {
+        try
+        {
+            conectar();
+            cs = cn.prepareCall("BEGIN ? := fnParaoper(?); END;");
+            cs.setString(2, stCodigo);
+            cs.registerOutParameter(1, OracleTypes.VARCHAR);
+            cs.execute();
+            return cs.getString(1);
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
 }

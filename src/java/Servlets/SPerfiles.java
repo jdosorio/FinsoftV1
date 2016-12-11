@@ -36,7 +36,8 @@ public class SPerfiles extends HttpServlet {
                 Perfiles Perf = new Perfiles();
                 Perf.setPerfCodi(request.getParameter("txPerfCodi"));
                 Perf.setPerfDesc(request.getParameter("txPerfDesc"));
-                Perf.setPerfTipo(request.getParameter("txPerfTipo"));
+                //Perf.setPerfTipo(request.getParameter("txPerfTipo"));
+                Perf.setPerfTipo("CM");
                 Perf.setPerfFunc(request.getParameter("txPerfFunc"));
                 Perf.setPerfEsta(request.getParameter("txPerfEsta"));
                 String Accion = request.getParameter("btSubmit");

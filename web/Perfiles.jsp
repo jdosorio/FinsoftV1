@@ -134,14 +134,13 @@
                                     <label>Descripción: </label>
                                     <input type="text" id="txPerfDesc" name="txPerfDesc" class="form-control" placeholder="Descripción del Perfil">
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label>Tipo: </label>
                                     <select id="txPerfTipo" name="txPerfTipo" class="form-control">
-                                        <option value="CO">Comercial</option>
-                                        <option value="AD">Administrativo</option>
-                                        <option value="ST">Sistema</option>
+                                        <option value="CM">Comercial</option>
+                                        <option value="OF">Oficina</option>
                                     </select>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <label>Función: </label>
                                     <input type="text" id="txPerfFunc" name="txPerfFunc" class="form-control" placeholder="Función del Perfil">
