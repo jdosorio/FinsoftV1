@@ -57,4 +57,23 @@ public class CParaoper
     {
         return Paop;
     }
+    
+    public static String getParaoper(String stCodigo) throws Exception
+    {
+        String stValor = "";
+        try
+        {
+            MParaoper mPaop = new MParaoper();
+            stValor = mPaop.PaopValo(stCodigo);
+            if(stValor.isEmpty())
+            {
+                stValor = "Parametro no Denfinido";
+            }
+            return stValor;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
 }

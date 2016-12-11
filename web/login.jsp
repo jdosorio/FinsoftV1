@@ -4,7 +4,9 @@
     Author     : Juan Osorio
 --%>
 
+<%@page import="Controlador.CMensajes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
  <html lang="es">
 <head>
@@ -24,7 +26,22 @@
 </head>
 
 <body class="login">
-	
+        <%
+            
+            try
+            {
+                String Sesion = request.getParameter("stSignOut");
+                if(Sesion != null && Sesion.contains("TRUE"))
+                {
+                    //session.invalidate();
+                    request.getSession().removeAttribute("usuario");
+                }
+            }
+            catch(Exception x)
+            {
+                CMensajes.Mensaje(x.toString(), response);
+            }
+        %>
 	<div class="logo">
 		<img src="assets/img/login-logo.png" class="img-responsive" alt="Responsive image">
 	</div>

@@ -106,7 +106,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="login.jsp?stSignOut='TRUE'" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -142,21 +142,21 @@
                 <i class="fa fa-pie-chart"></i> <span>Indicadores</span>
               </a>
             </li>
-            <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-cogs"></i> <span>Sistema</span><i class="fa fa-angle-down pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="Usuarios.jsp"><i class="fa fa-user"></i> Gestión Usuarios</a></li>
-                <li><a href="Paraoper.jsp"><i class="fa fa-wrench"></i> Parámetros Generales</a></li>
-                <% if(Usua.getUsuaPerf().contains("ROT")){ %>
-                    <li><a href="Estados.jsp"><i class="fa fa-wrench"></i> Estados del Sistema</a></li>
-                    <li><a href="Perfiles.jsp"><i class="fa fa-wrench"></i> Perfiles del Sistema</a></li>
-                    <li><a href="Modulos.jsp"><i class="fa fa-wrench"></i> Módulos del Sistema</a></li>
-                <% } %>
-                <li><a href="Entibanc.jsp"><i class="fa fa-bank"></i> Entidades Bancarias</a></li>
-              </ul>
-            </li>
+            <% if(Usua.getUsuaPerf().contains("ADM")){ %>
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-cogs"></i> <span>Sistema</span><i class="fa fa-angle-down pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="Usuarios.jsp"><i class="fa fa-user"></i> Gestión Usuarios</a></li>
+                        <li><a href="Paraoper.jsp"><i class="fa fa-wrench"></i> Parámetros Generales</a></li>
+                        <li><a href="Estados.jsp"><i class="fa fa-wrench"></i> Estados del Sistema</a></li>
+                        <li><a href="Perfiles.jsp"><i class="fa fa-wrench"></i> Perfiles del Sistema</a></li>
+                        <li><a href="Modulos.jsp"><i class="fa fa-wrench"></i> Módulos del Sistema</a></li>
+                        <li><a href="Entibanc.jsp"><i class="fa fa-bank"></i> Entidades Bancarias</a></li>
+                    </ul>
+                </li>
+            <% } %>
             <li class="active treeview">
               <a href="#">
                 <i class="fa fa-bank"></i> <span>Módulo de Creditos</span>
@@ -164,7 +164,8 @@
               <ul class="treeview-menu">
                 <!--<li class="active"><a href="Clientes.jsp"><i class="fa fa-user"></i> Clientes</a></li>-->
                 <li><a href="Compcacl.jsp"><i class="fa fa-pie-chart"></i> Compra de Cartera</a></li>
-                <li><a href="Simulador.jsp"><i class="fa fa-pie-chart"></i> Simulaciones</a></li>
+                <li><a href="Simulador.jsp"><i class="fa fa-pie-chart"></i> Simulador</a></li>
+                <li><a href="Simulaciones.jsp"><i class="fa fa-pie-chart"></i> Simulaciones</a></li>
               </ul>
             </li>
             <li class="active treeview">
