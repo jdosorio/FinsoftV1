@@ -2,7 +2,9 @@ package Model;
 
 import Objetos.Clientes;
 import Objetos.Simulado;
+import Objetos.Usuarios;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import oracle.jdbc.OracleTypes;
 
@@ -131,6 +133,47 @@ public class MSimulado extends BaseDatos
                 Simus.add(Simu);
             }
             return Simus;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
+    
+        public String[][] consulta() throws Exception
+    {
+        String[][] Matriz;
+        int filas = 0;
+        int columnas = 0;
+        int i = 0;
+        try
+        {
+            conectar();
+            /*
+                Se hizo de esta forma por funcionalidad del ResultSet
+            */
+            stSql = "SELECT *" +
+                    "  FROM Simulado";
+            st = cn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            
+            //cs.execute();
+            //rs = (ResultSet)cs.getObject(3);
+            rs = st.executeQuery(stSql);
+            rs.last();
+            filas = rs.getRow();
+            rs.beforeFirst();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            Matriz = new String[filas][columnas];
+            while(rs.next() && i < filas)
+            {
+                for(int j=0;j<columnas;j++)
+                {
+                    Matriz[i][j] = rs.getString(j+1);
+                }
+                i++;                    
+            }
+            return Matriz;
         }
         catch(Exception x)
         {

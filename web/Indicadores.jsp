@@ -16,7 +16,7 @@
     timeout: 30000,
     cache: false,
     success: function (data) {
-      
+        
         console.log(data);
         
     },

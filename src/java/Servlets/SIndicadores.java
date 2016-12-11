@@ -9,6 +9,7 @@ import Controlador.CMensajes;
 import Controlador.CSimulador;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,20 +39,8 @@ public class SIndicadores extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             try
            {
-               CSimulador cSimu = new CSimulador();
-               if(cSimu.Listar(request.getParameter("txClieIden"),request.getParameter("txClieNom1"),
-                               request.getParameter("txClieTel1"),request.getParameter("txClieTel2")))
-               {
-                   out.println("<table border='1'>");
-                   for (int i = 0; i < cSimu.getSimulados().size(); i++)
-                   {
-                       out.println("<tr>");
-                          out.println("<td>  "+ cSimu.getSimulados().get(i).getSimuCodi() +"  </td>");
-                          out.println("<td>  "+ cSimu.getSimulados().get(i).getSimuAdic()+"  </td>");
-                       out.println("</tr>");
-                   }
-                   out.println("</table>");
-               }
+              CSimulador cSimu = new CSimulador();
+              out.println(Arrays.deepToString(cSimu.Listar()));   
            }
            catch(Exception e)
            {
@@ -59,6 +48,7 @@ public class SIndicadores extends HttpServlet {
            }
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
