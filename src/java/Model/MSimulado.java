@@ -152,8 +152,11 @@ public class MSimulado extends BaseDatos
             /*
                 Se hizo de esta forma por funcionalidad del ResultSet
             */
-            stSql = "SELECT *" +
-                    "  FROM Simulado";
+            stSql = "SELECT SIM.SIMUUSUA,CONCAT( CONCAT( CONCAT( CONCAT( CONCAT(USU.USUANOM1, ' '), USU.USUANOM2), ' '),USU.USUAAPE1),' ')AS \"COMERCIAL\", SUM(SIM.SIMUVLCR) AS \"SUMA\" " +
+            "FROM SIMULADO SIM " +
+            "INNER JOIN USUARIOS USU " +
+            "ON SIM.SIMUUSUA = USU.USUACODI " +
+            "GROUP BY SIM.SIMUUSUA,USU.USUANOM1,USU.USUANOM2,USU.USUAAPE1";
             st = cn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             
             //cs.execute();

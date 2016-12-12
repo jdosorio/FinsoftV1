@@ -40,7 +40,15 @@ public class SIndicadores extends HttpServlet {
             try
            {
               CSimulador cSimu = new CSimulador();
-              out.println(Arrays.deepToString(cSimu.Listar()));   
+              
+              String arr[][] =  cSimu.Listar();
+              /*int  sumatoria = 0;
+              for(int i=0;i<= arr.length;i++){
+                   sumatoria += Integer.parseInt(arr[i][17]);
+              }*/
+              out.println(Arrays.deepToString(arr));
+              //out.println(arr[0][17]);
+              //out.println(Arrays.deepToString(cSimu.Listar()));   
            }
            catch(Exception e)
            {
