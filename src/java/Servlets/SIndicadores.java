@@ -40,8 +40,8 @@ public class SIndicadores extends HttpServlet {
             try
            {
               CSimulador cSimu = new CSimulador();
-              
-              String arr[][] =  cSimu.Listar();
+              /*
+              //String arr[][] =  cSimu.Listar();
               out.println("<script type='text/javascript'>");
                      out.println(" google.charts.load('current', {packages:['corechart']});");
                      out.println(" google.charts.setOnLoadCallback(drawChart);");
@@ -71,7 +71,7 @@ public class SIndicadores extends HttpServlet {
                      out.println("var chart = new google.visualization.PieChart(document.getElementById('piechart'));");
                      out.println("chart.draw(data, options);");
                      out.println("}");
-                     out.println("</script>");
+                     out.println("</script>");*/
                      
            }
            catch(Exception e)
