@@ -3,7 +3,10 @@ package Controlador;
 import Model.MSimulado;
 import Objetos.Clientes;
 import Objetos.Simulado;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -31,7 +34,10 @@ public class CSimulador {
             
             switch(Accion)
             {
-                        
+                case "Consultar":
+                    Simu = mSimu.consulta(Simu);
+                    blRespuest = Simu != null;
+                break;        
                 case "Actualizar":
                     blRespuest = mSimu.actualiz(Simu);
                 break;
@@ -65,6 +71,83 @@ public class CSimulador {
         catch(Exception x)
         {
             throw x;
+        }
+    }
+    
+    public void pintarSimus(HttpServletResponse response) throws IOException
+    {
+        PrintWriter out;
+        try
+        {
+            response.setContentType("text/html");
+            out = response.getWriter();
+            out.println("<table class='table table-striped table-bordered'>");
+            out.println("<thead>");
+                out.println("<tr>");
+                    out.println("<th>Código</th>");
+                    out.println("<th>Cliente</th>");
+                    out.println("<th>Fecha Estudio</th>");
+                    out.println("<th>Ingreso Adicional</th>");
+                    out.println("<th>Total Ingresos</th>");
+                    out.println("<th>Salud y Pensión</th>");
+                    out.println("<th>Ingresos menos Aportes</th>");
+                    out.println("<th>Salario Libre Mensual</th>");
+                    out.println("<th>Embargado</th>");
+                    out.println("<th>P. Data Credito</th>");
+                    out.println("<th>P. Cifin</th>");
+                    out.println("<th>Tasa</th>");
+                    out.println("<th>Desembolso Libre</th>");
+                    out.println("<th>Asesoria Financiera</th>");
+                    out.println("<th>Iva</th>");
+                    out.println("<th>GMF</th>");
+                    out.println("<th>Valor Desembolso</th>");
+                    out.println("<th>Valor Credito</th>");
+                    out.println("<th>Estado</th>");
+                    out.println("<th>Código Usuario</th>");
+                    out.println("<th>Fecha del Sistema</th>");
+                    out.println("<th>Usuario del Sistema</th>");
+                    out.println("<th>Papelería</th>");
+                    out.println("<th>Papelería</th>");
+                    out.println("<th>N° Dias Plazo</th>");
+                out.println("</tr>");
+            out.println("</thead>");
+            out.println("<tbody>");
+            for (int i = 0; i < Simus.size(); i++)
+            {
+                out.println("<tr>");
+                    out.println("<td> <a href='Simulador.jsp?urlSimuCodi="+Simus.get(i).getSimuCodi()+"'> "+ Simus.get(i).getSimuCodi() +" </a> </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuClie()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuFees()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuAdic()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuToin()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuAple()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuInma()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuSalm()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuEmba()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuPudc()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuPucn()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuTasa()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuPlaz()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuOdli()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuAsfi()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuIva()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuGmf()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuVlde()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuVlcr()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuEsta()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuUsua()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuFesi()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuUssi()+"  </td>");
+                    out.println("<td>  "+ Simus.get(i).getSimuPape()+"  </td>");
+                out.println("</tr>");
+            }
+            out.println("</tbody>");
+            out.println("</table>");
+        }
+        catch(Exception x)
+        {
+            out = response.getWriter();
+            out.println("<script> alert('" + x.toString() + "'); </script>");
         }
     }
      

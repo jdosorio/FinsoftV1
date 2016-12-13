@@ -14,7 +14,7 @@ public class Simulado
     private int    SimuClie = 0;
     private Date   SimuFees = null;
     private double SimuAdic = 0;
-    private double    SimuToin = 0;
+    private double SimuToin = 0;
     private double SimuAple = 0;
     private double SimuInma = 0;
     private double SimuSalm = 0;
@@ -22,9 +22,8 @@ public class Simulado
     private double SimuPudc = 0;
     private double SimuPucn = 0;
     private double SimuTasa = 0;
-    //private Date   SimuPlaz = null;
-    private int  SimuPlaz = -1;
-    private int SimuOdli = -1;
+    private int    SimuPlaz = -1;
+    private int    SimuOdli = -1;
     private double SimuAsfi = 0;
     private double SimuIva =  0;
     private double SimuGmf =  0;

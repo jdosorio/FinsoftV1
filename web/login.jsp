@@ -26,8 +26,7 @@
 </head>
 
 <body class="login">
-        <%
-            
+        <%        
             try
             {
                 String Sesion = request.getParameter("stSignOut");
