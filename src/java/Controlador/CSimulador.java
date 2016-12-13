@@ -150,6 +150,22 @@ public class CSimulador {
             out.println("<script> alert('" + x.toString() + "'); </script>");
         }
     }
+    
+    public String [][] Listar() throws Exception
+    {
+        try
+        {
+            MSimulado mSimu = new MSimulado();
+            String matriz [][];
+            matriz = mSimu.consulta();
+            //blRespuest = matriz.length > 0;
+            return matriz;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
      
     public Simulado getSimulado()
     {
