@@ -166,6 +166,21 @@ public class CSimulador {
             throw x;
         }
     }
+     public String [][] ListarDes() throws Exception
+    {
+        try
+        {
+            MSimulado mSimu = new MSimulado();
+            String matriz [][];
+            matriz = mSimu.consultaDes();
+            //blRespuest = matriz.length > 0;
+            return matriz;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
      
     public Simulado getSimulado()
     {

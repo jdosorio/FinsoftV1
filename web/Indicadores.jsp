@@ -24,7 +24,7 @@
                     </div>
                     <div class="box-body">
                         <script type="text/javascript">
-                              google.charts.load("current", {packages:["corechart"]});
+                              google.load("visualization", "1", {packages:["corechart"]});
                               google.charts.setOnLoadCallback(drawChart);
                               function drawChart() {
                                 var data = google.visualization.arrayToDataTable([
@@ -34,13 +34,13 @@
                                     String arr[][] =  cSimu.Listar();
                                     int tamano = arr.length;
                                     for(int i=0;i<tamano;i++){
-                                        String uno="";
+                                        String cierre="";
                                         if(i == tamano-1){
-                                            uno += "]";
+                                            cierre += "]";
                                         }else{
-                                            uno += "],";
+                                            cierre += "],";
                                         }                 
-                                        out.println( "['"+arr[i][1]+"',"+ arr[i][2]+uno);
+                                        out.println( "['"+arr[i][1]+"',"+ arr[i][2]+cierre);
                                     }
                                   %>
                                 ]);
@@ -72,22 +72,32 @@
                     </div>
                     <div class="box-body">
                             <script type="text/javascript">
-                              google.charts.load("current", {packages:["corechart"]});
+                              google.load("visualization", "1", {packages:["corechart"]});
                               google.charts.setOnLoadCallback(drawChart);
                               function drawChart() {
                                 var data = google.visualization.arrayToDataTable([
-                                  ['Language', 'Speakers (in millions)'],
-                                  ['German',  5.85],
-                                  ['French',  1.66],
-                                  ['Italian', 0.316],
-                                  ['Romansh', 0.0791]
+                                  ['Comercial', 'Colocacion'],
+                                  <% 
+                                    String arr2[][] =  cSimu.ListarDes();
+                                    int tamano2 = arr2.length;
+                                    for(int x=0;x<tamano2;x++){
+                                        String cierre2="";
+                                        if(x == tamano2-1){
+                                            cierre2 += "]";
+                                        }else{
+                                            cierre2 += "],";
+                                        }                 
+                                        out.println( "['"+arr2[x][0]+"',"+ arr2[x][1]+cierre2);
+                                    }
+                                  %>
                                 ]);
 
                               var options = {
                                 legend: 'none',
                                 pieSliceText: 'label',
-                                title: 'Desembolso total a la fecha',
+                                title: 'Colocacion total a la fecha',
                                 pieStartAngle: 100,
+                                is3D: true
                               };
 
                                 var chart = new google.visualization.PieChart(document.getElementById('chart'));

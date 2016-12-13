@@ -229,4 +229,48 @@ public class MSimulado extends BaseDatos
             throw x;
         }
     }
+        
+        public String[][] consultaDes() throws Exception
+    {
+        String[][] Matriz;
+        int filas = 0;
+        int columnas = 0;
+        int i = 0;
+        try
+        {
+            conectar();
+            /*
+                Se hizo de esta forma por funcionalidad del ResultSet
+            */
+            stSql = "SELECT EST.ESTADESC, SUM(SIM.SIMUVLCR) AS \"SUMA\" " +
+                    "FROM SIMULADO SIM " +
+                    "INNER JOIN ESTADOS EST " +
+                    "ON SIM.SIMUESTA = EST.ESTACODI " +
+                    "GROUP BY EST.ESTADESC,SIM.SIMUVLCR";
+            st = cn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            
+            //cs.execute();
+            //rs = (ResultSet)cs.getObject(3);
+            rs = st.executeQuery(stSql);
+            rs.last();
+            filas = rs.getRow();
+            rs.beforeFirst();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            Matriz = new String[filas][columnas];
+            while(rs.next() && i < filas)
+            {
+                for(int j=0;j<columnas;j++)
+                {
+                    Matriz[i][j] = rs.getString(j+1);
+                }
+                i++;                    
+            }
+            return Matriz;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
 }
