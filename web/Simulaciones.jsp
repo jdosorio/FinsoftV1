@@ -23,7 +23,7 @@
                         txClieNom1 : Nom1,
                         txClieTel1 : Tel1,
                         txClieTel2 : Tel2
-			},
+                    },
                     function(responseText)
                     {
                         $('#tabla').html(responseText);
@@ -77,14 +77,13 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="box box-default">
+                <!--<div class="box box-default">-->
                     <div class="col-md-12">
-                        <div id="tabla" class="table table-bordered"></div>
+                        <div id="tabla" class="table table-responsive"></div>
                     </div>
-                </div>
+                <!--</div>-->
             </div>
         </div>
-        
     </form>
     <br>
     <br>    

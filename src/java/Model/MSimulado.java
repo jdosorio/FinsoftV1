@@ -89,12 +89,57 @@ public class MSimulado extends BaseDatos
         }
     }
     
+    public Simulado consulta(Simulado Simu) throws Exception
+    {
+        try
+        {
+            conectar();
+            cs = cn.prepareCall("BEGIN pgSimulado.prConsSimu(?,?); END;");
+            cs.setInt(1, Simu.getSimuCodi());
+            cs.registerOutParameter(2, OracleTypes.CURSOR);
+            cs.execute();
+            rs = (ResultSet)cs.getObject(2);
+            if(rs.next())
+            {
+                Simu.setSimuCodi(rs.getInt(1));
+                Simu.setSimuClie(rs.getInt(2));
+                Simu.setSimuFees(rs.getDate(3));
+                Simu.setSimuAdic(rs.getDouble(4));
+                Simu.setSimuToin(rs.getDouble(5));
+                Simu.setSimuAple(rs.getDouble(6));
+                Simu.setSimuInma(rs.getDouble(7));
+                Simu.setSimuSalm(rs.getDouble(8));
+                Simu.setSimuEmba(rs.getString(9));
+                Simu.setSimuPudc(rs.getDouble(10));
+                Simu.setSimuPucn(rs.getDouble(11));
+                Simu.setSimuTasa(rs.getDouble(12));
+                Simu.setSimuOdli(rs.getInt(13));
+                Simu.setSimuAsfi(rs.getDouble(14));
+                Simu.setSimuIva(rs.getDouble(15));
+                Simu.setSimuGmf(rs.getDouble(16));
+                Simu.setSimuVlde(rs.getDouble(17));
+                Simu.setSimuVlcr(rs.getDouble(18));
+                Simu.setSimuEsta(rs.getString(19));
+                Simu.setSimuUsua(rs.getInt(20));
+                Simu.setSimuFesi(rs.getDate(21));
+                Simu.setSimuUssi(rs.getString(22));
+                Simu.setSimuPape(rs.getDouble(23));
+                Simu.setSimuPlaz(rs.getInt(24));
+            }
+            return Simu;
+        }
+        catch(Exception x)
+        {
+            throw x;
+        }
+    }
+    
     public ArrayList<Simulado> consulta(Clientes Clie) throws Exception
     {
         ArrayList<Simulado> Simus = new ArrayList<>();
+        Simulado Simu;
         try
         {
-            Simulado Simu = new Simulado();
             conectar();
             cs = cn.prepareCall("BEGIN pgSimulado.prConsSimu(?,?,?,?,?); END;");
             cs.setString(1, Clie.getClieIden());
@@ -106,6 +151,7 @@ public class MSimulado extends BaseDatos
             rs = (ResultSet)cs.getObject(5);
             while(rs.next())
             {
+                Simu = new Simulado();
                 Simu.setSimuCodi(rs.getInt(1));
                 Simu.setSimuClie(rs.getInt(2));
                 Simu.setSimuFees(rs.getDate(3));

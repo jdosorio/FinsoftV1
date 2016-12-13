@@ -41,150 +41,144 @@ public class SSimulado extends HttpServlet {
            try
             {
                 Simulado Simu = new Simulado();
-                Clientes Clie = new Clientes();
-                Clie.setClieIden(request.getParameter("txClieIden"));
-                String Accion = "Guardar";
-                CClientes cClie = new CClientes(Clie);
-                
-                if(cClie.ClieCrud("Consultar"))
+                CSimulador cSimu = null;
+                if(request.getParameter("SimuCodi") != null)
                 {
-                    Clie = cClie.getCliente();
+                    int SimuCodi = Integer.parseInt(request.getParameter("SimuCodi"));
+                    Simu.setSimuCodi(SimuCodi);
+                    cSimu = new CSimulador(Simu);
+                    if(cSimu.SimuCrud("Consultar"))
+                    {
+                        Simu = cSimu.getSimulado();
+                        out.println(Simu.getSimuCodi());
+                        out.println(Simu.getSimuClie());
+                        out.println(Simu.getSimuFees());
+                        out.println(Simu.getSimuAdic());
+                        out.println(Simu.getSimuToin());
+                        out.println(Simu.getSimuAple());
+                        out.println(Simu.getSimuInma());
+                        out.println(Simu.getSimuSalm());
+                        out.println(Simu.getSimuEmba());
+                        out.println(Simu.getSimuPudc());
+                        out.println(Simu.getSimuPucn());
+                        out.println(Simu.getSimuTasa());
+                        out.println(Simu.getSimuOdli());
+                        out.println(Simu.getSimuAsfi());
+                        out.println(Simu.getSimuIva());
+                        out.println(Simu.getSimuGmf());
+                        out.println(Simu.getSimuVlde());
+                        out.println(Simu.getSimuVlcr());
+                        out.println(Simu.getSimuEsta());
+                        out.println(Simu.getSimuUsua());
+                        out.println(Simu.getSimuFesi());
+                        out.println(Simu.getSimuUssi());
+                        out.println(Simu.getSimuPape());
+                        out.println(Simu.getSimuPlaz());
+                    }
                 }
                 else
                 {
+                    Clientes Clie = new Clientes();
                     Clie.setClieIden(request.getParameter("txClieIden"));
-                    Clie.setClieNom1(request.getParameter("txClieNom1"));
-                    Clie.setClieNom2(request.getParameter("txClieNom2"));
-                    Clie.setClieApe1(request.getParameter("txClieApe1"));
-                    Clie.setClieApe2(request.getParameter("txClieApe2"));
-                    Clie.setClieFena(request.getParameter("txClieFena"));
-                    Clie.setClieTel1(request.getParameter("txClieTel1"));
-                    Clie.setClieTel2(request.getParameter("txClieTel1"));
-                    Clie.setClieDire(request.getParameter("txClieDire"));
-                    Clie.setClieCorr(request.getParameter("txClieCorr"));
-                    Clie.setClieEsta("act");
-                    Double dbClieSaba = Double.valueOf(request.getParameter("txClieSaba"));
-                    Clie.setClieSaba(dbClieSaba);
-                    cClie = new CClientes(Clie);
-                    if(cClie.ClieCrud("Guardar"))
+                    String Accion = "Guardar";
+                    CClientes cClie = new CClientes(Clie);
+                    
+                    if(cClie.ClieCrud("Consultar"))
                     {
-                        if(cClie.ClieCrud("Consultar"))
-                        {
-                            Clie = cClie.getCliente();
-                        }
-                    }
-                }
-                HttpSession sesion = request.getSession(true);
-                Usuarios Usua = (Usuarios)sesion.getAttribute("usuario");
-                Simu.setSimuUsua(Usua.getUsuaCodi());
-                Simu.setSimuUssi(Usua.getUsuaNick());
-                
-                String stSimuTico = request.getParameter("SimuTico");
-                String stSiobObse = request.getParameter("SiobObse");
-                double dbSimuToeg = Double.valueOf(request.getParameter("SimuToeg"));
-                double dbSimuCuot = Double.valueOf(request.getParameter("SimuCuot"));
-                
-                Simu.setSimuClie(Clie.getClieCodi());
-                Simu.setSimuEmba(request.getParameter("SimuEmba"));
-                double dbSimuPucn = Double.valueOf(request.getParameter("SimuPucn"));
-                Simu.setSimuPucn(dbSimuPucn);
-                double dbSimuPudc = Double.valueOf(request.getParameter("SimuPudc"));
-                Simu.setSimuPudc(dbSimuPudc);
-                double dbSimuAdic = Double.valueOf(request.getParameter("SimuAdic"));
-                Simu.setSimuAdic(dbSimuAdic);
-                double dbSimuToin = Double.valueOf(request.getParameter("SimuToin"));
-                Simu.setSimuToin(dbSimuToin);
-                double dbSimuInma = Double.valueOf(request.getParameter("SimuInma"));
-                Simu.setSimuInma(dbSimuInma);
-                double dbSimuAple = Double.valueOf(request.getParameter("SimuAple"));
-                Simu.setSimuAple(dbSimuAple);
-                double dbSimuSalm = Double.valueOf(request.getParameter("SimuSalm"));
-                Simu.setSimuSalm(dbSimuSalm);
-                double dbSimuVlcr = Double.valueOf(request.getParameter("SimuVlcr"));
-                Simu.setSimuVlcr(dbSimuVlcr);
-                int inSimuPlaz = Integer.valueOf(request.getParameter("SimuPlaz"));
-                Simu.setSimuPlaz(inSimuPlaz);
-                double dbSimuAsfi = Double.valueOf(request.getParameter("SimuAsfi"));
-                Simu.setSimuAsfi(dbSimuAsfi);
-                double dbSimuIva  = Double.valueOf(request.getParameter("SimuIva"));
-                Simu.setSimuIva(dbSimuIva);
-                double dbSimuPape = Double.valueOf(request.getParameter("SimuPape"));
-                Simu.setSimuPape(dbSimuPape);
-                double dbSimuGmf  = Double.valueOf(request.getParameter("SimuGmf"));
-                Simu.setSimuGmf(dbSimuGmf);
-                double dbSimuVlde = Double.valueOf(request.getParameter("SimuVlde"));
-                Simu.setSimuVlde(dbSimuVlde);
-                int inSimuOdli = Integer.valueOf(request.getParameter("SimuOdli"));
-                Simu.setSimuOdli(inSimuOdli);
-                Simu.setSimuEsta(request.getParameter("SimuEsta"));
-                double dbSimuTasa = Double.valueOf(request.getParameter("SimuTasa"));
-                Simu.setSimuTasa(dbSimuTasa);
-                CSimulador cSimu = new CSimulador(Simu);
-                if(cSimu.SimuCrud("Guardar"))
-                {
-                    switch(Accion)
-                    {
-                        case "Guardar":
-                            CMensajes.Mensaje(2, response);
-                        break;
-                        case "Actualizar":
-                            CMensajes.Mensaje(3, response);
-                        break;
-                        case "Consultar":
-                            /*Simu = cSimu.getSimulado();
-                            out.println("<table>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Código de Usuario:</label> "+Usua.getUsuaCodi()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Primer Nombre Usuario:</label> "+Usua.getUsuaNom1()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Segundo Nombre Usuario:</label> "+Usua.getUsuaNom2()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Primer Apellido Usuario:</label> "+Usua.getUsuaApe1()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Segundo Apellido Usuario:</label> "+Usua.getUsuaApe2()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Identificación Usuario:</label> "+Usua.getUsuaIden()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Correo Usuario:</label> "+Usua.getUsuaCorr()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Telefono#1 Usuario:</label> "+Usua.getUsuaTel1()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Telefono#2 Usuario:</label> "+Usua.getUsuaTel2()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Login Usuario:</label> "+Usua.getUsuaNick()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Contraseña Usuario:</label> "+Usua.getUsuaPass()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Perfil Usuario:</label> "+Usua.getUsuaPerf()+"</td>");
-                                out.println("</tr>");
-                                out.println("<tr>");
-                                    out.println("<td> <label>Estado de Usuario:</label> "+Usua.getUsuaEsta()+"</td>");
-                                out.println("</tr>");
-                            out.println("</table>");*/
-                        break;
-                    }
-                }
-                else
-                {
-                    if(Accion.equals("Consultar"))
-                    {
-                        CMensajes.Mensaje(8, response);
+                        Clie = cClie.getCliente();
                     }
                     else
                     {
-                        CMensajes.Mensaje(5, response);
+                        Clie.setClieIden(request.getParameter("txClieIden"));
+                        Clie.setClieNom1(request.getParameter("txClieNom1"));
+                        Clie.setClieNom2(request.getParameter("txClieNom2"));
+                        Clie.setClieApe1(request.getParameter("txClieApe1"));
+                        Clie.setClieApe2(request.getParameter("txClieApe2"));
+                        Clie.setClieFena(request.getParameter("txClieFena"));
+                        Clie.setClieTel1(request.getParameter("txClieTel1"));
+                        Clie.setClieTel2(request.getParameter("txClieTel1"));
+                        Clie.setClieDire(request.getParameter("txClieDire"));
+                        Clie.setClieCorr(request.getParameter("txClieCorr"));
+                        Clie.setClieEsta("act");
+                        Double dbClieSaba = Double.valueOf(request.getParameter("txClieSaba"));
+                        Clie.setClieSaba(dbClieSaba);
+                        cClie = new CClientes(Clie);
+                        if(cClie.ClieCrud("Guardar"))
+                        {
+                            if(cClie.ClieCrud("Consultar"))
+                            {
+                                Clie = cClie.getCliente();
+                            }
+                        }
+                    }
+                    HttpSession sesion = request.getSession(true);
+                    Usuarios Usua = (Usuarios)sesion.getAttribute("usuario");
+                    Simu.setSimuUsua(Usua.getUsuaCodi());
+                    Simu.setSimuUssi(Usua.getUsuaNick());
+                    
+                    String stSimuTico = request.getParameter("SimuTico");
+                    String stSiobObse = request.getParameter("SiobObse");
+                    double dbSimuToeg = Double.valueOf(request.getParameter("SimuToeg"));
+                    double dbSimuCuot = Double.valueOf(request.getParameter("SimuCuot"));
+                    
+                    Simu.setSimuClie(Clie.getClieCodi());
+                    Simu.setSimuEmba(request.getParameter("SimuEmba"));
+                    double dbSimuPucn = Double.valueOf(request.getParameter("SimuPucn"));
+                    Simu.setSimuPucn(dbSimuPucn);
+                    double dbSimuPudc = Double.valueOf(request.getParameter("SimuPudc"));
+                    Simu.setSimuPudc(dbSimuPudc);
+                    double dbSimuAdic = Double.valueOf(request.getParameter("SimuAdic"));
+                    Simu.setSimuAdic(dbSimuAdic);
+                    double dbSimuToin = Double.valueOf(request.getParameter("SimuToin"));
+                    Simu.setSimuToin(dbSimuToin);
+                    double dbSimuInma = Double.valueOf(request.getParameter("SimuInma"));
+                    Simu.setSimuInma(dbSimuInma);
+                    double dbSimuAple = Double.valueOf(request.getParameter("SimuAple"));
+                    Simu.setSimuAple(dbSimuAple);
+                    double dbSimuSalm = Double.valueOf(request.getParameter("SimuSalm"));
+                    Simu.setSimuSalm(dbSimuSalm);
+                    double dbSimuVlcr = Double.valueOf(request.getParameter("SimuVlcr"));
+                    Simu.setSimuVlcr(dbSimuVlcr);
+                    int inSimuPlaz = Integer.valueOf(request.getParameter("SimuPlaz"));
+                    Simu.setSimuPlaz(inSimuPlaz);
+                    double dbSimuAsfi = Double.valueOf(request.getParameter("SimuAsfi"));
+                    Simu.setSimuAsfi(dbSimuAsfi);
+                    double dbSimuIva  = Double.valueOf(request.getParameter("SimuIva"));
+                    Simu.setSimuIva(dbSimuIva);
+                    double dbSimuPape = Double.valueOf(request.getParameter("SimuPape"));
+                    Simu.setSimuPape(dbSimuPape);
+                    double dbSimuGmf  = Double.valueOf(request.getParameter("SimuGmf"));
+                    Simu.setSimuGmf(dbSimuGmf);
+                    double dbSimuVlde = Double.valueOf(request.getParameter("SimuVlde"));
+                    Simu.setSimuVlde(dbSimuVlde);
+                    int inSimuOdli = Integer.valueOf(request.getParameter("SimuOdli"));
+                    Simu.setSimuOdli(inSimuOdli);
+                    Simu.setSimuEsta(request.getParameter("SimuEsta"));
+                    double dbSimuTasa = Double.valueOf(request.getParameter("SimuTasa"));
+                    Simu.setSimuTasa(dbSimuTasa);
+                    cSimu = new CSimulador(Simu);
+                    if(cSimu.SimuCrud("Guardar"))
+                    {
+                        switch(Accion)
+                        {
+                            case "Guardar":
+                                CMensajes.Mensaje(2, response);
+                            break;
+                            case "Actualizar":
+                                CMensajes.Mensaje(3, response);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if(Accion.equals("Consultar"))
+                        {
+                            CMensajes.Mensaje(8, response);
+                        }
+                        else
+                        {
+                            CMensajes.Mensaje(5, response);
+                        }
                     }
                 }
             }

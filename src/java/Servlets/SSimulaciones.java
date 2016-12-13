@@ -43,15 +43,11 @@ public class SSimulaciones extends HttpServlet {
                if(cSimu.Listar(request.getParameter("txClieIden"),request.getParameter("txClieNom1"),
                                request.getParameter("txClieTel1"),request.getParameter("txClieTel2")))
                {
-                   out.println("<table border='1'>");
-                   for (int i = 0; i < cSimu.getSimulados().size(); i++)
-                   {
-                       out.println("<tr>");
-                          out.println("<td>  "+ cSimu.getSimulados().get(i).getSimuCodi() +"  </td>");
-                          out.println("<td>  "+ cSimu.getSimulados().get(i).getSimuAdic()+"  </td>");
-                       out.println("</tr>");
-                   }
-                   out.println("</table>");
+                   cSimu.pintarSimus(response);
+               }
+               else
+               {
+                   CMensajes.Mensaje("Consulta no trajo registros", response);
                }
            }
            catch(Exception e)

@@ -4,90 +4,139 @@
     Author     : Juan y Karol
 --%>
 
+<%@page import="Objetos.Simulado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:include page="header.jsp" />
 <script src="app/simulador.js"></script>
 <script>
-    function sendForm()
+    $(document).ready(function()
     {
-            //CLIENTES
-            var ClieIden = $('#txSimuCedu').val();
-            var ClieNom1 = $('#txSimuNom1').val();
-            var ClieNom2 = $('#txSimuNom2').val();
-            var ClieApe1 = $('#txtSimuApe1').val();
-            var ClieApe2 = $('#txSimuApe2').val();
-            var ClieNaci = $('#txtSimuNaci').val();
-            var ClieTele = $('#txSimuTele').val();
-            var ClieDire = $('#txSimuDire').val();
-            var ClieMail = $('#txtSimuMail').val();
-            var ClieBasi = $('#txtSimuBasi').val();
-            
-            //SIMULADO
-            var SimuEmba = $('#slSimuEmba').val();
-            var SimuTico = $('#slSimuCont').val();
-            var SimuPucn = $('#txtSimuCifi').val();
-            var SimuPudc = $('#txtSimuData').val();
-            var SiobObse = $('#txtSimuObse').val();
-            var SimuAdic = $('#txtSimuAdic').val();
-            var SimuToin = $('#txtSimuTing').val();
-            var SimuInma = $('#txtSimuInapo').val();
-            var SimuAple = $('#txtSimuApor').val();
-            var SimuToeg = $('#txtSimuTegr').val();
-            var SimuSalm = $('#txtSimuSlib').val();
-            var SimuCuot = $('#txtSimuCuot').val();
-            var SimuVlcr = $('#txtSimuCred').val();
-            var SimuPlaz = $('#txtSimuPlaz').val();
-            var SimuAsfi = $('#txtSimuAfin').val();
-            var SimuIva = $('#txtSimuIva').val();
-            var SimuPape = $('#txtSimuPape').val();
-            var SimuGmf = $('#txtSimuGmf').val();
-            var SimuVlde = $('#txtSimuDese').val();
-            var SimuOdli = $('#txtSimuDeci').val();
-            var SimuEsta = $('#txtSimuSube').val();
-            var SimuTasa = $('#txtSimuTasa').val();
-            
+        var SimuCodi = getParameterByName('urlSimuCodi');
+        
+        if(SimuCodi !== null)
+        {
             $.post('SSimulado',
             {
-                txClieIden : ClieIden,
-                txClieNom1 : ClieNom1,
-                txClieNom2 : ClieNom2,
-                txClieApe1 : ClieApe1,
-                txClieApe2 : ClieApe2,
-                txClieFena : ClieNaci,
-                txClieTel1 : ClieTele,
-                txClieDire : ClieDire,
-                txClieCorr : ClieMail,
-                txClieSaba : ClieBasi,
-                SimuEmba : SimuEmba,
-                SimuTico : SimuTico,
-                SimuPucn : SimuPucn,
-                SimuPudc : SimuPudc,
-                SiobObse : SiobObse,
-                SimuAdic : SimuAdic,
-                SimuToin : SimuToin,
-                SimuInma : SimuInma,
-                SimuAple : SimuAple,
-                SimuToeg : SimuToeg,
-                SimuSalm : SimuSalm,
-                SimuCuot : SimuCuot,
-                SimuVlcr : SimuVlcr,
-                SimuPlaz : SimuPlaz,
-                SimuAsfi : SimuAsfi,
-                SimuIva  : SimuIva,
-                SimuPape : SimuPape,
-                SimuGmf  : SimuGmf,
-                SimuVlde : SimuVlde,
-                SimuOdli : SimuOdli,
-                SimuEsta : SimuEsta,
-                SimuTasa : SimuTasa
+                SimuCodi : SimuCodi
+            },
+            function(responseText)
+            {
+                alert('ajax0 - '+responseText[0]);
+                alert('ajax1 - '+responseText[1]);
+                alert('ajax2 - '+responseText[2]);
+                alert('ajax3 - '+responseText[3]);
+                alert('ajax4 - '+responseText[4]);
+                alert('ajax5 - '+responseText[5]);
+                alert('ajax6 - '+responseText[6]);
+                alert('ajax7 - '+responseText[7]);
+                alert('ajax8 - '+responseText[8]);
+                alert('ajax9 - '+responseText[9]);
+                alert('ajax10 - '+responseText[10]);
+                alert('ajax11 - '+responseText[11]);
+                alert('ajax12 - '+responseText[12]);
+                alert('ajax13 - '+responseText[13]);
+                alert('ajax14 - '+responseText[14]);
+                alert('ajax15 - '+responseText[15]);
+            });
+        }
+    });
+    function sendForm()
+    {
+        //CLIENTES
+        var ClieIden = $('#txSimuCedu').val();
+        var ClieNom1 = $('#txSimuNom1').val();
+        var ClieNom2 = $('#txSimuNom2').val();
+        var ClieApe1 = $('#txtSimuApe1').val();
+        var ClieApe2 = $('#txSimuApe2').val();
+        var ClieNaci = $('#txtSimuNaci').val();
+        var ClieTele = $('#txSimuTele').val();
+        var ClieDire = $('#txSimuDire').val();
+        var ClieMail = $('#txtSimuMail').val();
+        var ClieBasi = $('#txtSimuBasi').val();
+        
+        //SIMULADO
+        var SimuEmba = $('#slSimuEmba').val();
+        var SimuTico = $('#slSimuCont').val();
+        var SimuPucn = $('#txtSimuCifi').val();
+        var SimuPudc = $('#txtSimuData').val();
+        var SiobObse = $('#txtSimuObse').val();
+        var SimuAdic = $('#txtSimuAdic').val();
+        var SimuToin = $('#txtSimuTing').val();
+        var SimuInma = $('#txtSimuInapo').val();
+        var SimuAple = $('#txtSimuApor').val();
+        var SimuToeg = $('#txtSimuTegr').val();
+        var SimuSalm = $('#txtSimuSlib').val();
+        var SimuCuot = $('#txtSimuCuot').val();
+        var SimuVlcr = $('#txtSimuCred').val();
+        var SimuPlaz = $('#txtSimuPlaz').val();
+        var SimuAsfi = $('#txtSimuAfin').val();
+        var SimuIva = $('#txtSimuIva').val();
+        var SimuPape = $('#txtSimuPape').val();
+        var SimuGmf = $('#txtSimuGmf').val();
+        var SimuVlde = $('#txtSimuDese').val();
+        var SimuOdli = $('#txtSimuDeci').val();
+        var SimuEsta = $('#txtSimuSube').val();
+        var SimuTasa = $('#txtSimuTasa').val();
+        
+        $.post('SSimulado',
+        {
+            txClieIden : ClieIden,
+            txClieNom1 : ClieNom1,
+            txClieNom2 : ClieNom2,
+            txClieApe1 : ClieApe1,
+            txClieApe2 : ClieApe2,
+            txClieFena : ClieNaci,
+            txClieTel1 : ClieTele,
+            txClieDire : ClieDire,
+            txClieCorr : ClieMail,
+            txClieSaba : ClieBasi,
+            SimuEmba : SimuEmba,
+            SimuTico : SimuTico,
+            SimuPucn : SimuPucn,
+            SimuPudc : SimuPudc,
+            SiobObse : SiobObse,
+            SimuAdic : SimuAdic,
+            SimuToin : SimuToin,
+            SimuInma : SimuInma,
+            SimuAple : SimuAple,
+            SimuToeg : SimuToeg,
+            SimuSalm : SimuSalm,
+            SimuCuot : SimuCuot,
+            SimuVlcr : SimuVlcr,
+            SimuPlaz : SimuPlaz,
+            SimuAsfi : SimuAsfi,
+            SimuIva  : SimuIva,
+            SimuPape : SimuPape,
+            SimuGmf  : SimuGmf,
+            SimuVlde : SimuVlde,
+            SimuOdli : SimuOdli,
+            SimuEsta : SimuEsta,
+            SimuTasa : SimuTasa
             },
             function(responseText)
             {
                 $('#tabla').html(responseText);
             });
     }
+    function getParameterByName(name, url)
+    {
+        if (!url)
+        {
+            url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 </script>
+<%
+    Simulado Simu = new Simulado();
+    Simu = (Simulado)request.getAttribute("Simulado");
+%>
 <form id="fmSimulado" name="fmSimulado" method="get">
     <div id="prueba"></div>
     <section class="content">
@@ -212,7 +261,7 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
 
-                <div class="box box-success">
+                <!--<div class="box box-success">
                     <div class="box-header">
                       <i class="fa fa-comments-o"></i>
                       <h3 class="box-title">Observaciones</h3>
@@ -230,8 +279,8 @@
                                     the arrival of the new theme. They say it is going to be one the
                                     best themes on the market
                             </p>
-                        </div><!-- /.item -->
-                      <!-- chat item -->
+                        </div><!-- /.item
+                      <!-- chat item
                         <div class="item">
                             <img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
                             <p class="message">
@@ -243,8 +292,8 @@
                                     the arrival of the new theme. They say it is going to be one the
                                     best themes on the market
                             </p>
-                        </div><!-- /.item -->
-                    </div><!-- /.chat -->
+                        </div><!-- /.item
+                    </div><!-- /.chat
 
                     <div class="box-footer">
                         <div class="input-group">
@@ -254,7 +303,7 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- /.box (chat box) -->
+                <!--</div><!-- /.box (chat box) -->
             </div>
             <!-- Columna Izquierda -->
             <!-- Columna Derecha -->
