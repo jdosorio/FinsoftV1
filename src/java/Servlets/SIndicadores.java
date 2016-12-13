@@ -42,13 +42,37 @@ public class SIndicadores extends HttpServlet {
               CSimulador cSimu = new CSimulador();
               
               String arr[][] =  cSimu.Listar();
-              /*int  sumatoria = 0;
-              for(int i=0;i<= arr.length;i++){
-                   sumatoria += Integer.parseInt(arr[i][17]);
-              }*/
-              out.println(Arrays.deepToString(arr));
-              //out.println(arr[0][17]);
-              //out.println(Arrays.deepToString(cSimu.Listar()));   
+              out.println("<script type='text/javascript'>");
+                     out.println(" google.charts.load('current', {packages:['corechart']});");
+                     out.println(" google.charts.setOnLoadCallback(drawChart);");
+                     out.println(" function drawChart() {");
+                     out.println(" var data = google.visualization.arrayToDataTable([");
+                     out.println(" ['Comercial', 'Colocacion'],");
+                     int tamano = arr.length;
+                     for(int i=0;i<tamano;i++){
+                         String uno="";
+                     if(i == tamano-1){
+                         uno += "]";
+                     }else{
+                         uno += "],";
+                                 }
+                  
+                     out.println( "["+arr[i][1]+","+ arr[i][2]+uno);
+                             }
+                                  
+                     out.println( "]);");
+
+                     out.println("var options = {");
+                     out.println("legend: 'none',");
+                     out.println("pieSliceText: 'label',");
+                     out.println("title: 'Colocacion total a la fecha',");
+                     out.println("pieStartAngle: 100,");
+                     out.println("};");
+                     out.println("var chart = new google.visualization.PieChart(document.getElementById('piechart'));");
+                     out.println("chart.draw(data, options);");
+                     out.println("}");
+                     out.println("</script>");
+                     
            }
            catch(Exception e)
            {
